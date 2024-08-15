@@ -1,0 +1,82 @@
+.menu {
+	background-color: #ff6f00;
+	padding: 0 10px;
+}
+
+.menu-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+  position: relative;
+}
+
+.menu-img img {
+	width: 180px;
+}
+
+.menu-list ul {
+	list-style: none;
+	display: flex;
+}
+
+.menu-list ul li {
+	padding: 5px 0;
+	margin-left: 2rem;
+	font-family: "Changa One", sans-serif;
+	font-size: 15px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.menu-list ul li:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+.menu-item-dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  /*left: 0;*/
+  background-color: #ff6f00;
+  min-width: 140px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  padding: 0;
+}
+
+.menu-item-dropdown .dropdown-content li {
+  align-items: center;
+  padding: 10px 12px;
+  margin: 5px;
+  background-color: #ff6f00;
+  text-decoration: none;
+  color: #000000;
+  display: block;
+}
+
+.menu-item-dropdown .dropdown-content.show {
+  display: block;
+  opacity: 1;
+}
+
+.menu-item-dropdown::after {
+  content: '\25BC';
+  font-size: 12px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.menu-item-dropdown .dropdown-content li fa-icon {
+  font-size: 18px;
+  width: 20px;
+  margin-right: 10px;
+  display: inline-block;
+  text-align: center;
+}
+
+.menu-item-dropdown .dropdown-content li span {
+  margin-left: 5px;
+}

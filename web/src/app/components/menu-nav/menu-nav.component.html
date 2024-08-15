@@ -1,0 +1,50 @@
+<header class="menu">
+	<div class="menu-container">
+		<div class="menu-img">
+      <a href="#"><img src="../../../assets/img/logo_menu.png" alt=""></a>
+		</div>
+
+		<div class="menu-list">
+			<ul>
+				<li>
+					<fa-icon [icon]="faHome"></fa-icon>
+					Home
+				</li>
+				<li>
+          <fa-icon [icon]="faUser"></fa-icon>
+          Clientes
+        </li>
+				<li>
+          <fa-icon [icon]="faUserGraduate"></fa-icon>
+          Alunos
+        </li>
+				<li>
+          <fa-icon [icon]="faCartShopping"></fa-icon>
+          Pedidos
+        </li>
+				<li>
+          <fa-icon [icon]="faListCheck"></fa-icon>
+          Pendências
+        </li>
+        <li class="menu-item-dropdown" (click)="toggleDropdown()">
+          <fa-icon [icon]="faGear"></fa-icon>
+          Gestão
+          <ul class="dropdown-content" [class.show]="isDropdownOpen">
+            <li>
+              <fa-icon [icon]="faBook"></fa-icon><span>Kit Livro</span>
+            </li>
+            <li>
+              <fa-icon [icon]="faBookOpen"></fa-icon><span>Livro</span>
+            </li>
+            <li>
+              <fa-icon [icon]="faList"></fa-icon><span>Série</span>
+            </li>
+            <li>
+              <fa-icon [icon]="faUsers"></fa-icon><span>Turma</span>
+            </li>
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+</header>
