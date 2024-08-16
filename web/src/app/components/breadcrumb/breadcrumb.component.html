@@ -1,0 +1,13 @@
+<nav>
+  <ol class="cd-breadcrumb">
+    <li>
+      <a routerLink="{{ firstItem.link }}">{{ firstItem.name }}</a>
+    </li>
+    <li *ngFor="let item of items">
+      <a routerLink="{{ item.link }}">{{ item.name }}</a>
+    </li>
+    <li class="current">
+      <em>{{ currentItem.name }}</em>
+    </li>
+  </ol>
+</nav>

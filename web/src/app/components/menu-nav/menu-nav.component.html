@@ -1,28 +1,28 @@
 <header class="menu">
 	<div class="menu-container">
 		<div class="menu-img">
-      <a href="#"><img src="../../../assets/img/logo_menu.png" alt=""></a>
+      <a routerLink="/home" href="#"><img src="../../../assets/img/logo_menu.png" alt=""></a>
 		</div>
 
 		<div class="menu-list">
 			<ul>
-				<li>
+				<li routerLink="/home">
 					<fa-icon [icon]="faHome"></fa-icon>
 					Home
 				</li>
-				<li>
+				<li routerLink="/cliente">
           <fa-icon [icon]="faUser"></fa-icon>
           Clientes
         </li>
-				<li>
+				<li routerLink="/aluno">
           <fa-icon [icon]="faUserGraduate"></fa-icon>
           Alunos
         </li>
-				<li>
+				<li routerLink="/pedido">
           <fa-icon [icon]="faCartShopping"></fa-icon>
           Pedidos
         </li>
-				<li>
+				<li routerLink="/pendencia">
           <fa-icon [icon]="faListCheck"></fa-icon>
           Pendências
         </li>
@@ -30,16 +30,16 @@
           <fa-icon [icon]="faGear"></fa-icon>
           Gestão
           <ul class="dropdown-content" [class.show]="isDropdownOpen">
-            <li>
-              <fa-icon [icon]="faBook"></fa-icon><span>Kit Livro</span>
+            <li routerLink="/kit-livro">
+              <fa-icon [icon]="faBook"></fa-icon><span>Kit Livros</span>
             </li>
-            <li>
+            <li routerLink="/livro">
               <fa-icon [icon]="faBookOpen"></fa-icon><span>Livro</span>
             </li>
-            <li>
+            <li routerLink="/serie">
               <fa-icon [icon]="faList"></fa-icon><span>Série</span>
             </li>
-            <li>
+            <li routerLink="/turma">
               <fa-icon [icon]="faUsers"></fa-icon><span>Turma</span>
             </li>
           </ul>

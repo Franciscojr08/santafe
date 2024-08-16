@@ -1,0 +1,51 @@
+.cd-breadcrumb, .cd-multi-steps {
+  width: 96%;
+  padding: 0.5em 1em;
+  margin: 1em auto;
+  background-color: #fff;
+  border-radius: .25em;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+.cd-breadcrumb::after, .cd-multi-steps::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+.cd-breadcrumb li, .cd-multi-steps li {
+  display: inline-block;
+  float: left;
+  margin: 0.5em 0;
+}
+.cd-breadcrumb li::after, .cd-multi-steps li::after {
+  /* this is the separator between items */
+  display: inline-block;
+  content: '\00bb';
+  margin: 0 .6em;
+  color: #959fa5;
+}
+.cd-breadcrumb li:last-of-type::after, .cd-multi-steps li:last-of-type::after {
+  /* hide separator after the last item */
+  display: none;
+}
+.cd-breadcrumb li > *, .cd-multi-steps li > * {
+  /* single step */
+  display: inline-block;
+  color: #2c3f4c;
+}
+.cd-breadcrumb li.current > *, .cd-multi-steps li.current > * {
+  /* selected step */
+  color: #ff6f00;
+  font-family: "Changa One", sans-serif;
+}
+
+cd-breadcrumb a:hover {
+  /* steps already visited */
+  color: #ff6f00;
+  font-family: "Changa One", sans-serif;
+}
+
+a {
+  color: #ff6f00;
+  text-decoration: none;
+  font-family: "Changa One", sans-serif;
+}

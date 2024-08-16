@@ -10,11 +10,12 @@ import {
   faBook, faBookOpen, faList, faUsers
 } from '@fortawesome/free-solid-svg-icons';
 import {NgClass} from "@angular/common";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-menu-nav',
   standalone: true,
-  imports: [FontAwesomeModule, NgClass],
+  imports: [FontAwesomeModule, NgClass, RouterLink],
   templateUrl: './menu-nav.component.html',
   styleUrl: './menu-nav.component.css'
 })
