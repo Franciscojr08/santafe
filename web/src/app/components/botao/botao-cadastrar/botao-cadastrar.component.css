@@ -1,0 +1,29 @@
+.button-cadastro {
+  background-color: #13aa52;
+  border: 1px solid #13aa52;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Changa One", sans-serif;
+  font-weight: 400;
+  outline: none;
+  outline: 0;
+  padding: 8px 12px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 150ms, box-shadow 150ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 22px;
+  margin-left: 1px;
+}
+
+.button-cadastro:hover {
+  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+  transform: translateY(-2px);
+}

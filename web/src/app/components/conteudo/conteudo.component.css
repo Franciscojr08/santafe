@@ -1,0 +1,8 @@
+.conteudo {
+  max-width: 95%;
+  margin: 1em auto;
+  padding: 0.5em 1em 1em 1em;
+  background-color: #ffffff;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  border-radius: .25em;;
+}

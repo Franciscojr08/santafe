@@ -2,8 +2,40 @@
 <app-breadcrumb
   [firstItem]="{ name: 'Home', link: '/home' }"
   [items]="[
-    { name: 'Kit de Livros', link: '/kit-livros' },
+    { name: 'Kit de Livros', link: '/kit-livro' },
   ]"
   [currentItem]="{ name: 'Consultar' }"
 >
 </app-breadcrumb>
+
+<app-conteudo>
+  <app-messages></app-messages>
+
+  <app-fieldset
+    legend='filtros'>
+    <div class="fieldset-content">
+      <div class="filtros">
+        <app-filtro-livro-kit-livro></app-filtro-livro-kit-livro>
+      </div>
+
+      <div class="botoes">
+        <app-botoes></app-botoes>
+      </div>
+    </div>
+  </app-fieldset>
+
+  <app-botao-cadastrar link="/kit-livro/cadastrar"></app-botao-cadastrar>
+
+  <app-tabela-generica
+    [displayedColumns]="displayedColumns"
+    [columnNames]="LISTAGEM_KIT_LIVRO"
+    [dataSource]="dataSource"
+    [totalElements]="totalElements"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    (pageChange)="onPageChange($event)">
+  </app-tabela-generica>
+
+</app-conteudo>
+
+<app-footer></app-footer>

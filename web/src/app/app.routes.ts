@@ -8,6 +8,9 @@ import {ClienteComponent} from "./pages/cliente/cliente.component";
 import {AlunoComponent} from "./pages/aluno/aluno.component";
 import {PedidoComponent} from "./pages/pedido/pedido.component";
 import {PendenciaComponent} from "./pages/pendencia/pendencia.component";
+import {
+  CadastrarKitLivroComponent
+} from "./pages/kit-livro/cadastrar/cadastrar-kit-livro/cadastrar-kit-livro.component";
 
 export const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -17,6 +20,7 @@ export const routes: Routes = [
   { path: "pedido", component: PedidoComponent },
   { path: "pendencia", component: PendenciaComponent },
   { path: "kit-livro", component: KitLivroComponent },
+  { path: "kit-livro/cadastrar", component: CadastrarKitLivroComponent },
   { path: "livro", component: LivroComponent },
   { path: "serie", component: SerieComponent },
   { path: "turma", component: TurmaComponent },

@@ -1,10 +1,10 @@
 .cd-breadcrumb, .cd-multi-steps {
-  width: 96%;
+  width: 95%;
   padding: 0.5em 1em;
   margin: 1em auto;
   background-color: #fff;
   border-radius: .25em;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
 }
 .cd-breadcrumb::after, .cd-multi-steps::after {
   clear: both;

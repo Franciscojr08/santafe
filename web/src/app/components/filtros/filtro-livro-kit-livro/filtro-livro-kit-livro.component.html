@@ -1,0 +1,17 @@
+<div class="filtro">
+  <div class="filtro-content" style="width: 40%">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" placeholder="Nome" style="width: 20em">
+  </div>
+
+  <div class="filtro-content" style="width: 19%">
+    <label for="valor">Valor:</label>
+    <input currencyMask [(ngModel)]="valor" [ngModelOptions]="{standalone: true}" id="valor" name="valor" style="width: 8em">
+  </div>
+
+
+  <div class="filtro-content" style="width: 30%">
+    <label for="quantidade_disponivel">Disponível:</label>
+    <input type="number" min="0" id="quantidade_disponivel" placeholder="Quantidade" style="width: 10em; text-align: right">
+  </div>
+</div>

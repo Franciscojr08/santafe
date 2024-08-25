@@ -1,0 +1,13 @@
+.fieldset-content {
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.fieldset-content .filtros {
+  width: 65%;
+}
+
+.fieldset-content .botoes {
+  margin: 0 auto;
+}

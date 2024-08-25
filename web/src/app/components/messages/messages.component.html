@@ -1,0 +1,57 @@
+<div [ngClass]="{'message-content': messageService.message.length > 0}">
+  <div class="message-info" *ngIf="messageService.type == INFO">
+    <div class="message-wrapper">
+      <span class="message-icon">
+        <fa-icon [icon]="faCircleInfo"></fa-icon>
+      </span>
+      <span class="message-text">
+        {{ messageService.message }}
+      </span>
+      <span class="message-close" (click)="messageService.clear()">
+        <fa-icon [icon]="faXmark"></fa-icon>
+      </span>
+    </div>
+  </div>
+
+  <div class="message-success" *ngIf="messageService.type == SUCCESS">
+    <div class="message-wrapper">
+      <span class="message-icon">
+        <fa-icon [icon]="faCircleCheck"></fa-icon>
+      </span>
+      <span class="message-text">
+        {{ messageService.message }}
+      </span>
+      <span class="message-close" (click)="messageService.clear()">
+        <fa-icon [icon]="faXmark"></fa-icon>
+      </span>
+    </div>
+  </div>
+
+  <div class="message-warning" *ngIf="messageService.type == WARNING">
+    <div class="message-wrapper">
+      <span class="message-icon">
+        <fa-icon [icon]="faTriangleExclamation"></fa-icon>
+      </span>
+      <span class="message-text">
+        {{ messageService.message }}
+      </span>
+      <span class="message-close" (click)="messageService.clear()">
+        <fa-icon [icon]="faXmark"></fa-icon>
+      </span>
+    </div>
+  </div>
+
+  <div class="message-error" *ngIf="messageService.type == ERROR">
+    <div class="message-wrapper">
+      <span class="message-icon">
+        <fa-icon [icon]="faCircleXmark"></fa-icon>
+      </span>
+      <span class="message-text">
+        {{ messageService.message }}
+      </span>
+      <span class="message-close" (click)="messageService.clear()">
+        <fa-icon [icon]="faXmark"></fa-icon>
+      </span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+.mat-elevation-z8 {
+  box-shadow: none!important;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.mat-mdc-header-row {
+  background-color: #ff6f00!important;
+  font-family: "Changa One", sans-serif !important;
+}
+
+.mat-mdc-header-row th {
+  text-align: center;
+}
+
+.mat-mdc-cell {
+  text-align: center;
+}
+
+.mat-mdc-row {
+  background-color: #ffffff;
+}
+
+.mat-mdc-paginator {
+  background-color: #e5e5e5!important;
+  font-weight: 500!important;
+  border: 1px solid #ccc;
+}

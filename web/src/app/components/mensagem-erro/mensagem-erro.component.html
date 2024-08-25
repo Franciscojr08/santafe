@@ -1,0 +1,9 @@
+<div *ngIf="control.errors && control.touched">
+  <p *ngIf="control.errors['required']" class="mensagem-erro">
+    Campo obrigatório
+  </p>
+
+  <div *ngIf="control.errors['email']" class="mensagem-erro">
+    E-mail no formato inválido
+  </div>
+</div>

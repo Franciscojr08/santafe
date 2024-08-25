@@ -1,0 +1,17 @@
+fieldset {
+  padding: 15px;
+  border: 1px solid #e5e5e5;
+  margin: .50em 0;
+}
+
+fieldset legend {
+  padding: 6px 12px;
+  color: #000;
+  font-family: "Changa One", sans-serif;
+  background-color: #ff6f00;
+  border: none;
+  border-radius: .25em;
+  margin-bottom: 5px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,25 @@
+.filtro {
+  display: flex;
+  align-items: flex-end;
+  padding-left: 0.25em;
+}
+
+input:focus, select:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0;
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 5px 0;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.filtro-content {
+  margin-right: 2em;
+}
+
+label {
+  margin-right: 5px;
+}
