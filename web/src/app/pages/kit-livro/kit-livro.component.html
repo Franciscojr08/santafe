@@ -13,15 +13,63 @@
 
   <app-fieldset
     legend='filtros'>
-    <div class="fieldset-content">
+    <form class="fieldset-content" [formGroup]="filtroKitLivroForm">
       <div class="filtros">
-        <app-filtro-livro-kit-livro></app-filtro-livro-kit-livro>
+        <div class="filtro">
+          <div class="filtro-content" style="width: 40%">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="Nome" style="width: 20em" formControlName="nome">
+          </div>
+
+          <div class="filtro-content" style="width: 19%">
+            <label for="valor">Valor:</label>
+            <input
+              currencyMask
+              id="valor"
+              name="valor"
+              style="width: 8em"
+              formControlName="valor"
+            >
+          </div>
+
+
+          <div class="filtro-content" style="width: 30%">
+            <label for="quantidadeDisponivel">Disponível:</label>
+            <input
+              type="number"
+              min="0"
+              id="quantidadeDisponivel"
+              name="quantidadeDisponivel"
+              placeholder="Quantidade"
+              style="width: 10em; text-align: right"
+              formControlName="quantidadeDisponivel"
+            >
+          </div>
+        </div>
+
       </div>
 
       <div class="botoes">
-        <app-botoes></app-botoes>
+        <button
+          class="button-filter"
+          type="submit"
+          [disabled]="!filtrosPreenchidos()"
+          [ngClass]="filtrosPreenchidos() ? 'button-filter' : 'button-filter-desabilitado'"
+          (click)="filtrar()"
+        >
+          <fa-icon [icon]="faFilter"></fa-icon>
+          Filtrar
+        </button>
+        <button
+          class="button-clear"
+          type="button"
+          (click)="limparFiltros()"
+        >
+          <fa-icon [icon]="faBroom"></fa-icon>
+          Limpar
+        </button>
       </div>
-    </div>
+    </form>
   </app-fieldset>
 
   <app-botao-cadastrar link="/kit-livro/cadastrar"></app-botao-cadastrar>
