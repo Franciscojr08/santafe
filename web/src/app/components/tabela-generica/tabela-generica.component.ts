@@ -15,6 +15,7 @@ import {MatIcon} from "@angular/material/icon";
 import {faBroom} from "@fortawesome/free-solid-svg-icons";
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {TotalRegistrosComponent} from "../total-registros/total-registros.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-tabela-generica',
@@ -51,14 +52,18 @@ export class TabelaGenericaComponent implements OnInit {
   @Input() pageSize: number = 10;
   @Input() pageIndex: number = 0;
   @Input() columnNames: { [key: string]: string } = {};
-
+  @Input() editPath: string = "";
   @Output() pageChange = new EventEmitter<any>()
 
   allColumns: string[] = [];
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.allColumns = [...this.displayedColumns, 'gerir'];
+    if (this.editPath) {
+      this.allColumns = [...this.displayedColumns, 'gerir'];
+    } else {
+      this.allColumns = this.displayedColumns;
+    }
   }
 
   onPageChange(event: any) {
@@ -72,7 +77,7 @@ export class TabelaGenericaComponent implements OnInit {
   }
 
   onEdit(element: any) {
-    // Lógica para editar
+    this.router.navigate([`${this.editPath}/${element.id}`]);
   }
 
   onDelete(element: any) {
@@ -102,4 +107,5 @@ export class TabelaGenericaComponent implements OnInit {
   }
 
   protected readonly faBroom = faBroom;
+  protected readonly console = console;
 }

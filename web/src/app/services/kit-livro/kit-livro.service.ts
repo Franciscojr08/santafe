@@ -5,6 +5,8 @@ import {PageDadosListagemKitLivro} from "../../interfaces/kit-livro/pageDadosLis
 import {DadosCadastroKitLivro} from "../../interfaces/kit-livro/dadosCadastroKitLivro";
 import {DadosResponse} from "../../interfaces/dadosResponse";
 import {DadosFiltragemKitLivro} from "../../interfaces/kit-livro/dadosFiltragemKitLivro";
+import {DadosDetalhamentoKitLivro} from "../../interfaces/kit-livro/dadosDetalhamentoKitLivro";
+import {DadosAtualizacaoKitLivro} from "../../interfaces/kit-livro/dadosAtualizacaoKitLivro";
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +41,17 @@ export class KitLivroService {
     });
 
     return this.http.get<PageDadosListagemKitLivro>(`${this.API}/filtrar`, { params });
+  }
+
+  detalhar(id: string): Observable<DadosDetalhamentoKitLivro> {
+    return this.http.get<DadosDetalhamentoKitLivro>(`${this.API}/${id}`);
+  }
+
+  atualizar(dadosAtualizacao: DadosAtualizacaoKitLivro): Observable<DadosResponse> {
+    return this.http.put<DadosResponse>(this.API,dadosAtualizacao).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
   }
 }

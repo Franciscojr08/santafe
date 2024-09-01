@@ -1,10 +1,10 @@
-import {DadosListagemKitLivro} from "./dadosListagemKitLivro";
+import {DadosListagemPedido} from "./dadosListagemPedido";
 
-export interface PageDadosListagemKitLivro {
+export interface PageDadosListagemPedido {
   totalPages: number;
   totalElements: number;
   size: number;
-  content: DadosListagemKitLivro[];
+  content: DadosListagemPedido[];
   number: number;
   sort: {
     empty: boolean;
