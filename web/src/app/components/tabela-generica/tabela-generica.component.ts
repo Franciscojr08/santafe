@@ -16,6 +16,8 @@ import {faBroom} from "@fortawesome/free-solid-svg-icons";
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {TotalRegistrosComponent} from "../total-registros/total-registros.component";
 import {Router} from "@angular/router";
+import {ModalCancelarComponent} from "../modal-cancelar/modal-cancelar.component";
+import {Service} from "../../interfaces/service";
 
 @Component({
   selector: 'app-tabela-generica',
@@ -41,7 +43,8 @@ import {Router} from "@angular/router";
     NgSwitchCase,
     NgSwitchDefault,
     FaIconComponent,
-    TotalRegistrosComponent
+    TotalRegistrosComponent,
+    ModalCancelarComponent
   ],
   styleUrls: ['./tabela-generica.component.css']
 })
@@ -54,8 +57,12 @@ export class TabelaGenericaComponent implements OnInit {
   @Input() columnNames: { [key: string]: string } = {};
   @Input() editPath: string = "";
   @Output() pageChange = new EventEmitter<any>()
+  @Input() component!: string;
+
 
   allColumns: string[] = [];
+  selectedItemId!: number;
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -81,7 +88,15 @@ export class TabelaGenericaComponent implements OnInit {
   }
 
   onDelete(element: any) {
-    // Lógica para excluir
+    this.selectedItemId = element.id;
+    this.openModal();
+  }
+
+  openModal() {
+    const modal = document.getElementById('confirmDialog');
+    if (modal) {
+      modal.style.display = 'block';
+    }
   }
 
   formatarValor(value: number): string {

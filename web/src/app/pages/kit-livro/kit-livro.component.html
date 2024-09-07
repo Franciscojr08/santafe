@@ -82,7 +82,9 @@
     [pageSize]="pageSize"
     [pageIndex]="pageIndex"
     (pageChange)="onPageChange($event)"
-    editPath="kit-livro/editar">
+    editPath="kit-livro/editar"
+    [component]="getSeletorComponent()"
+  >
   </app-tabela-generica>
 
 </app-conteudo>

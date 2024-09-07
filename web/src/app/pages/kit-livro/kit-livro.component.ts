@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Injector} from '@angular/core';
 import {MenuNavComponent} from "../../components/menu-nav/menu-nav.component";
 import {BreadcrumbComponent} from "../../components/breadcrumb/breadcrumb.component";
 import {ConteudoComponent} from "../../components/conteudo/conteudo.component";
@@ -11,11 +11,16 @@ import {FooterComponent} from "../../components/footer/footer.component";
 import {faBroom, faFilter, faHome, faPlus} from "@fortawesome/free-solid-svg-icons";
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {BotaoCadastrarComponent} from "../../components/botao/botao-cadastrar/botao-cadastrar.component";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {MessagesComponent} from "../../components/messages/messages.component";
 import {CurrencyMaskModule} from "ng2-currency-mask";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgClass} from "@angular/common";
+import {ERROR, SUCCESS, WARNING} from "../../core/functions";
+import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
+import {MessageService} from "../../services/message/message.service";
+import {NotificationService} from "../../services/notification/notification.service";
+import {DadosExclusao} from "../../interfaces/dadosExclusao";
 
 
 @Component({
@@ -65,9 +70,20 @@ export class KitLivroComponent {
 
   filtroKitLivroForm!: FormGroup;
 
-  constructor(private kitLivroService: KitLivroService) {
+  constructor(
+    protected kitLivroService: KitLivroService,
+    private messageService: MessageService,
+    private injetor: Injector,
+    private notificationService: NotificationService
+  ) {
     this.listar();
     this.valor = 0;
+
+    this.notificationService.deleteConfirmed$.subscribe((dadosExclusao: DadosExclusao) => {
+      if (dadosExclusao.component == this.getSeletorComponent()) {
+        this.deletarKit(dadosExclusao.id);
+      }
+    });
   }
 
   ngOnInit() {
@@ -102,12 +118,12 @@ export class KitLivroComponent {
 
   filtrar(pageIndex = 0, pageSize = 10) {
     if (!this.filtrosPreenchidos()) {
-      this.listar(pageIndex,pageSize);
+      this.listar(pageIndex, pageSize);
       return;
     }
 
     const filtroKitLivro = this.filtroKitLivroForm.value;
-    this.kitLivroService.filtrar(pageIndex,pageSize,filtroKitLivro).subscribe(response => {
+    this.kitLivroService.filtrar(pageIndex, pageSize, filtroKitLivro).subscribe(response => {
       this.dataSource = response.content;
       this.totalElements = response.totalElements;
       this.pageSize = response.size;
@@ -124,6 +140,28 @@ export class KitLivroComponent {
     return Object.keys(this.filtroKitLivroForm.controls).some(key => {
       const control = this.filtroKitLivroForm.get(key);
       return control?.value !== "" && control?.value !== null && control?.value !== undefined;
+    });
+  }
+
+  getSeletorComponent() {
+    return (this.injetor.get(KitLivroComponent).constructor as any).ɵcmp.selector;
+  }
+
+  private deletarKit(id: number) {
+    this.kitLivroService.deletar(id).subscribe({
+      next: (dadosResponse) => {
+        if (dadosResponse.status == HttpStatusCode.Ok) {
+          this.listar();
+          this.messageService.add("Kit deletado com sucesso!",SUCCESS);
+          return;
+        }
+
+        this.messageService.add("Ocorreu um erro ao tentar excluir o kit de livro. Tente novamente!",WARNING);
+      },
+      error: (error: HttpErrorResponse) => {
+        let dadosErros = error.error;
+        this.messageService.add(dadosErros.mensagem,ERROR);
+      }
     });
   }
 }

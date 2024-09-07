@@ -7,11 +7,12 @@ import {DadosResponse} from "../../interfaces/dadosResponse";
 import {DadosFiltragemKitLivro} from "../../interfaces/kit-livro/dadosFiltragemKitLivro";
 import {DadosDetalhamentoKitLivro} from "../../interfaces/kit-livro/dadosDetalhamentoKitLivro";
 import {DadosAtualizacaoKitLivro} from "../../interfaces/kit-livro/dadosAtualizacaoKitLivro";
+import {Service} from "../../interfaces/service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class KitLivroService {
+export class KitLivroService implements Service {
   private API = 'http://localhost:8080/kitLivro';
 
   constructor(private http: HttpClient) {}
@@ -49,6 +50,14 @@ export class KitLivroService {
 
   atualizar(dadosAtualizacao: DadosAtualizacaoKitLivro): Observable<DadosResponse> {
     return this.http.put<DadosResponse>(this.API,dadosAtualizacao).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
+  deletar(id: number): Observable<DadosResponse> {
+    return this.http.delete<DadosResponse>(`${this.API}/${id}`).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
