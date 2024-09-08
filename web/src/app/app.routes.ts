@@ -11,7 +11,8 @@ import {PendenciaComponent} from "./pages/pendencia/pendencia.component";
 import {
   CadastrarKitLivroComponent
 } from "./pages/kit-livro/cadastrar/cadastrar-kit-livro/cadastrar-kit-livro.component";
-import {EditarKitLivroComponent} from "./pages/kit-livro/editar-kit-livro/editar-kit-livro.component";
+import {EditarKitLivroComponent} from "./pages/kit-livro/editar/editar-kit-livro.component";
+import {CadastrarSerieComponent} from "./pages/serie/cadastrar/cadastrar-serie.component";
 
 export const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -26,5 +27,6 @@ export const routes: Routes = [
   { path: "kit-livro/editar", redirectTo: "/kit-livro" },
   { path: "livro", component: LivroComponent },
   { path: "serie", component: SerieComponent },
+  { path: "serie/cadastrar", component: CadastrarSerieComponent },
   { path: "turma", component: TurmaComponent },
 ];

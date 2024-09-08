@@ -1,0 +1,30 @@
+<app-menu-nav></app-menu-nav>
+<app-breadcrumb
+  [firstItem]="{ name: 'Home', link: '/home' }"
+  [items]="[
+    { name: 'Séries', link: '/serie' },
+  ]"
+  [currentItem]="{ name: 'Cadastrar' }"
+>
+</app-breadcrumb>
+
+<app-conteudo>
+  <form class="form-cadastro-serie" [formGroup]="serieForm" (ngSubmit)="cadastrarSerie()">
+    <div class="div-content" style="width: 40%">
+      <label for="nome">Nome: <em>*</em></label>
+      <input type="text" name="nome" id="nome" placeholder="Nome" style="width: 88%" formControlName="nome">
+      <app-mensagem-erro [control]="obterControle('nome')"></app-mensagem-erro>
+    </div>
+
+    <div class="conteudo_botoes">
+      <app-botao-enviar
+        [disabled]="serieForm.invalid"
+        [buttonClass]="serieForm.valid ? 'button-cadastro' : 'button-cadastro-desabilitado'"
+      >
+      </app-botao-enviar>
+      <app-botao-cancelar (click)="limparFormularioERedirecionar()"></app-botao-cancelar>
+    </div>
+  </form>
+</app-conteudo>
+
+<app-footer></app-footer>

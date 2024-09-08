@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
+import {catchError, Observable, throwError} from "rxjs";
 import {PageDadosListagemSerie} from "../../interfaces/serie/pageDadosListagemSerie";
 import {DadosFiltragemSerie} from "../../interfaces/serie/dadosFiltragemSerie";
+import {DadosResponse} from "../../interfaces/dadosResponse";
+import {DadosCadastroSerie} from "../../interfaces/serie/dadosCadastroSerie";
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +31,13 @@ export class SerieService {
     });
 
     return this.http.get<PageDadosListagemSerie>(`${this.API}/filtrar`, { params });
+  }
+
+  cadastrar(dadosCadastro: DadosCadastroSerie): Observable<DadosResponse> {
+    return this.http.post<DadosResponse>(this.API,dadosCadastro).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
   }
 }
