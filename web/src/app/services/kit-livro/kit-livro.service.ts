@@ -7,12 +7,11 @@ import {DadosResponse} from "../../interfaces/dadosResponse";
 import {DadosFiltragemKitLivro} from "../../interfaces/kit-livro/dadosFiltragemKitLivro";
 import {DadosDetalhamentoKitLivro} from "../../interfaces/kit-livro/dadosDetalhamentoKitLivro";
 import {DadosAtualizacaoKitLivro} from "../../interfaces/kit-livro/dadosAtualizacaoKitLivro";
-import {Service} from "../../interfaces/service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class KitLivroService implements Service {
+export class KitLivroService {
   private API = 'http://localhost:8080/kitLivro';
 
   constructor(private http: HttpClient) {}

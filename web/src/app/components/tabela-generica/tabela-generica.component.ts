@@ -17,7 +17,6 @@ import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {TotalRegistrosComponent} from "../total-registros/total-registros.component";
 import {Router} from "@angular/router";
 import {ModalCancelarComponent} from "../modal-cancelar/modal-cancelar.component";
-import {Service} from "../../interfaces/service";
 
 @Component({
   selector: 'app-tabela-generica',

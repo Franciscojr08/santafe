@@ -7,3 +7,61 @@
   [currentItem]="{ name: 'Consultar' }"
 >
 </app-breadcrumb>
+
+<app-conteudo>
+  <app-messages></app-messages>
+
+  <app-fieldset
+    legend='filtros'
+  >
+    <form class="fieldset-content" [formGroup]="serieForm">
+      <div class="filtros">
+        <div class="filtro">
+          <div class="filtro-content">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="Nome" style="width: 20em" formControlName="nome">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="botoes">
+        <button
+          class="button-filter"
+          type="submit"
+          [disabled]="!filtrosPreenchidos()"
+          [ngClass]="filtrosPreenchidos() ? 'button-filter' : 'button-filter-desabilitado'"
+          (click)="filtrar()"
+        >
+          <fa-icon [icon]="faFilter"></fa-icon>
+          Filtrar
+        </button>
+        <button
+          class="button-clear"
+          type="button"
+          (click)="limparFiltros()"
+        >
+          <fa-icon [icon]="faBroom"></fa-icon>
+          Limpar
+        </button>
+      </div>
+    </form>
+  </app-fieldset>
+
+  <app-botao-cadastrar link="/serie/cadastrar"></app-botao-cadastrar>
+
+  <app-tabela-generica
+    [displayedColumns]="displayedColumns"
+    [columnNames]="LISTAGEM_SERIE"
+    [dataSource]="dataSource"
+    [totalElements]="totalElements"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    (pageChange)="onPageChange($event)"
+    editPath="serie/editar"
+    [component]="getSeletorComponent()"
+  >
+  </app-tabela-generica>
+</app-conteudo>
+
+<app-footer></app-footer>

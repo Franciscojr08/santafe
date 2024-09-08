@@ -47,10 +47,11 @@ import {DadosExclusao} from "../../interfaces/dadosExclusao";
   styleUrl: './kit-livro.component.css'
 })
 export class KitLivroComponent {
-  protected readonly LISTAGEM_KIT_LIVRO = LISTAGEM_KIT_LIVRO;
   protected readonly faHome = faHome;
   protected readonly faFilter = faFilter;
   protected readonly faBroom = faBroom;
+
+  LISTAGEM_KIT_LIVRO = LISTAGEM_KIT_LIVRO;
   faPlus = faPlus;
   displayedColumns: string[] = [
     'id',
