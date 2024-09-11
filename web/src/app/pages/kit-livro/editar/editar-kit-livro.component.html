@@ -12,7 +12,7 @@
 <app-conteudo>
   <app-messages></app-messages>
 
-  <div class="tab_kit_livro">
+  <div>
     <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
       <mat-tab label="Kit">
         <form class="form-cadastro-kit" [formGroup]="kitLivroForm" (ngSubmit)="atualizarKitLivro()">
@@ -46,12 +46,12 @@
           <div class="div-content-data">
             <div class="div-content">
               <label for="dataCadastro">Cadastro:</label>
-              <input type="text" class="input_data" name="dataCadastro" id="dataCadastro"formControlName="dataCadastro" readonly>
+              <input type="text" class="input_data" name="dataCadastro" id="dataCadastro" formControlName="dataCadastro" readonly>
             </div>
 
             <div class="div-content">
               <label for="dataAtualizacao">Atualização:</label>
-              <input type="text" class="input_data" name="dataAtualizacao" id="dataAtualizacao"formControlName="dataAtualizacao" readonly>
+              <input type="text" class="input_data" name="dataAtualizacao" id="dataAtualizacao" formControlName="dataAtualizacao" readonly>
             </div>
           </div>
 

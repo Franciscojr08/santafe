@@ -163,7 +163,7 @@ export class EditarKitLivroComponent {
     this.router.navigate([`/kit-livro/editar/${this.kitLivroId}`]);
   }
 
-  /////////////
+  ////////////
   // PEDIDO //
   ////////////
 

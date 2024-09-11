@@ -1,0 +1,77 @@
+<app-menu-nav></app-menu-nav>
+<app-breadcrumb
+  [firstItem]="{ name: 'Home', link: '/home' }"
+  [items]="[
+    { name: 'Séries', link: '/serie' },
+    { name: 'Editar', link: '/serie/' },
+  ]"
+  [currentItem]="{ name: serieEditar }"
+>
+</app-breadcrumb>
+
+<app-conteudo>
+  <app-messages></app-messages>
+
+  <div>
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+      <mat-tab label="Série">
+        <form class="form-cadastro-serie" [formGroup]="serieForm" (ngSubmit)="atualizarSerie()">
+          <input type="hidden" name="id" id="id" formControlName="id">
+
+          <div class="div-content" style="width: 40%">
+            <label for="nome">Nome: <em>*</em></label>
+            <input type="text" name="nome" id="nome" placeholder="Nome" style="width: 88%" formControlName="nome">
+            <app-mensagem-erro [control]="obterControle('nome')"></app-mensagem-erro>
+          </div>
+
+          <div class="div-content-data">
+            <div class="div-content">
+              <label for="dataCadastro">Cadastro:</label>
+              <input type="text" class="input_data" name="dataCadastro" id="dataCadastro" formControlName="dataCadastro"
+                     readonly>
+            </div>
+
+            <div class="div-content">
+              <label for="dataAtualizacao">Atualização:</label>
+              <input type="text" class="input_data" name="dataAtualizacao" id="dataAtualizacao"
+                     formControlName="dataAtualizacao" readonly>
+            </div>
+          </div>
+
+          <div class="conteudo_botoes">
+            <app-botao-salvar
+              [disabled]="serieForm.invalid"
+              [buttonClass]="serieForm.valid ? 'button-cadastro' : 'button-cadastro-desabilitado'"
+            >
+            </app-botao-salvar>
+            <app-botao-voltar (click)="redirect()"></app-botao-voltar>
+          </div>
+        </form>
+      </mat-tab>
+      <mat-tab label="Turmas">
+        <app-tabela-generica
+          [displayedColumns]="displayedColumnsTurma"
+          [columnNames]="LISTAGEM_TURMA"
+          [dataSource]="dataSourceTurma"
+          [totalElements]="totalElementsTurma"
+          [pageSize]="pageSizeTurma"
+          [pageIndex]="pageIndexTurma"
+          (pageChange)="onPageChangeTurma($event)">
+        </app-tabela-generica>
+      </mat-tab>
+      <mat-tab label="Livros">
+        <app-tabela-generica
+          [displayedColumns]="displayedColumnsLivro"
+          [columnNames]="LISTAGEM_LIVRO"
+          [dataSource]="dataSourceLivro"
+          [totalElements]="totalElementsLivro"
+          [pageSize]="pageSizeLivro"
+          [pageIndex]="pageIndexLivro"
+          (pageChange)="onPageChangeLivro($event)">
+        </app-tabela-generica>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</app-conteudo>
+
+<app-footer></app-footer>

@@ -13,6 +13,7 @@ import {
 } from "./pages/kit-livro/cadastrar/cadastrar-kit-livro/cadastrar-kit-livro.component";
 import {EditarKitLivroComponent} from "./pages/kit-livro/editar/editar-kit-livro.component";
 import {CadastrarSerieComponent} from "./pages/serie/cadastrar/cadastrar-serie.component";
+import {EditarSerieComponent} from "./pages/serie/editar/editar-serie.component";
 
 export const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -28,5 +29,7 @@ export const routes: Routes = [
   { path: "livro", component: LivroComponent },
   { path: "serie", component: SerieComponent },
   { path: "serie/cadastrar", component: CadastrarSerieComponent },
+  { path: "serie/editar/:id", component: EditarSerieComponent },
+  { path: "serie/editar", redirectTo: "/serie" },
   { path: "turma", component: TurmaComponent },
 ];

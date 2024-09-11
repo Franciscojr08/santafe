@@ -1,0 +1,21 @@
+import { Injectable } from '@angular/core';
+import {HttpClient, HttpParams} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {PageDadosListagemLivro} from "../../interfaces/livro/pageDadosListagemLivro";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LivroService {
+  private API = 'http://localhost:8080/livro';
+
+  constructor(private http: HttpClient) {}
+
+  public listarPorSerie(serieId: number, page: number, size: number): Observable<PageDadosListagemLivro> {
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+
+    return this.http.get<PageDadosListagemLivro>(`${this.API}/listar-por-serie/${serieId}`,{ params });
+  }
+}
