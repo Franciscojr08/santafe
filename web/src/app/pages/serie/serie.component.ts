@@ -14,7 +14,6 @@ import {LISTAGEM_SERIE} from "../../const/serie/const-serie";
 import {SerieService} from "../../services/serie/serie.service";
 import {MessageService} from "../../services/message/message.service";
 import {NotificationService} from "../../services/notification/notification.service";
-import {LISTAGEM_KIT_LIVRO} from "../../const/kit-livro/const-kit-livro";
 import {faBroom, faFilter} from "@fortawesome/free-solid-svg-icons";
 import {NgClass} from "@angular/common";
 import {DadosExclusao} from "../../interfaces/dadosExclusao";

@@ -11,6 +11,10 @@ export class TurmaService {
 
   constructor(private http: HttpClient) {}
 
+  listar(page: number, size: number): Observable<PageDadosListagemTurma> {
+    return this.http.get<PageDadosListagemTurma>(`${this.API}?page=${page}&size=${size}`);
+  }
+
   public listarPorSerie(serieId: number, page: number, size: number): Observable<PageDadosListagemTurma> {
     let params = new HttpParams()
       .set('page', page.toString())

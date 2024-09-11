@@ -7,3 +7,27 @@
   [currentItem]="{ name: 'Consultar' }"
 >
 </app-breadcrumb>
+
+<app-conteudo>
+  <app-messages></app-messages>
+
+  <app-fieldset
+    legend='filtros'
+  >
+  </app-fieldset>
+
+  <app-botao-cadastrar link="/turma/cadastrar"></app-botao-cadastrar>
+
+  <app-tabela-generica
+    [displayedColumns]="displayedColumnsTurma"
+    [columnNames]="LISTAGEM_TURMA"
+    [dataSource]="dataSourceTurma"
+    [totalElements]="totalElementsTurma"
+    [pageSize]="pageSizeTurma"
+    [pageIndex]="pageIndexTurma"
+    editPath="turma/editar"
+    (pageChange)="onPageChangeTurma($event)">
+  </app-tabela-generica>
+</app-conteudo>
+
+<app-footer></app-footer>
