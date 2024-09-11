@@ -17,6 +17,9 @@ import {NotificationService} from "../../services/notification/notification.serv
 import {LISTAGEM_KIT_LIVRO} from "../../const/kit-livro/const-kit-livro";
 import {faBroom, faFilter} from "@fortawesome/free-solid-svg-icons";
 import {NgClass} from "@angular/common";
+import {DadosExclusao} from "../../interfaces/dadosExclusao";
+import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
+import {ERROR, SUCCESS, WARNING} from "../../core/functions";
 
 @Component({
   selector: 'app-serie',
@@ -64,6 +67,12 @@ export class SerieComponent {
     private notificationService: NotificationService
   ) {
     this.listar();
+
+    this.notificationService.deleteConfirmed$.subscribe((dadosExclusao: DadosExclusao) => {
+      if (dadosExclusao.component == this.getSeletorComponent()) {
+        this.deletarSerie(dadosExclusao.id);
+      }
+    });
   }
 
   ngOnInit() {
@@ -123,5 +132,23 @@ export class SerieComponent {
   limparFiltros() {
     this.serieForm.reset();
     this.listar();
+  }
+
+  private deletarSerie(id: number) {
+    this.serieService.deletar(id).subscribe({
+      next: (dadosResponse) => {
+        if (dadosResponse.status == HttpStatusCode.Ok) {
+          this.listar();
+          this.messageService.add("Série deletada com sucesso!",SUCCESS);
+          return;
+        }
+
+        this.messageService.add("Ocorreu um erro ao tentar excluir a série. Tente novamente!",WARNING);
+      },
+      error: (error: HttpErrorResponse) => {
+        let dadosErros = error.error;
+        this.messageService.add(dadosErros.mensagem,ERROR);
+      }
+    });
   }
 }
