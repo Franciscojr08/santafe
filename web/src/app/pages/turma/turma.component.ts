@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Injector} from '@angular/core';
 import {BreadcrumbComponent} from "../../components/breadcrumb/breadcrumb.component";
 import {MenuNavComponent} from "../../components/menu-nav/menu-nav.component";
 import {ConteudoComponent} from "../../components/conteudo/conteudo.component";
@@ -17,6 +17,10 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
 import {NgClass, NgForOf} from "@angular/common";
 import {SerieService} from "../../services/serie/serie.service";
 import {DadosComboSerie} from "../../interfaces/serie/dadosComboSerie";
+import {NotificationService} from "../../services/notification/notification.service";
+import {DadosExclusao} from "../../interfaces/dadosExclusao";
+import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
+import {ERROR, SUCCESS, WARNING} from "../../core/functions";
 
 @Component({
   selector: 'app-turma',
@@ -63,10 +67,18 @@ export class TurmaComponent {
     private router: Router,
     private turmaService: TurmaService,
     private serieService: SerieService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private injetor: Injector,
+    private notificationService: NotificationService
   ) {
     this.listar();
     this.carregarComboSerie();
+
+    this.notificationService.deleteConfirmed$.subscribe((dadosExclusao: DadosExclusao) => {
+      if (dadosExclusao.component == this.getSeletorComponent()) {
+        this.deletarTurma(dadosExclusao.id);
+      }
+    });
   }
 
   ngOnInit() {
@@ -134,5 +146,27 @@ export class TurmaComponent {
     this.turmaForm.reset();
     this.turmaForm.get("serieId")?.setValue("Selecione uma opção");
     this.listar();
+  }
+
+  getSeletorComponent() {
+    return (this.injetor.get(TurmaComponent).constructor as any).ɵcmp.selector;
+  }
+
+  deletarTurma(id: number) {
+    this.turmaService.deletar(id).subscribe( {
+      next: (dadosResponse) => {
+        if (dadosResponse.status == HttpStatusCode.Ok) {
+          this.listar();
+          this.messageService.add("Turma deletada com sucesso!",SUCCESS);
+          return;
+        }
+
+        this.messageService.add("Ocorreu um erro ao tentar excluir a turma. Tente novamente!",WARNING);
+      },
+      error: (error: HttpErrorResponse) => {
+        let dadosErros = error.error;
+        this.messageService.add(dadosErros.mensagem,ERROR);
+      }
+    });
   }
 }
