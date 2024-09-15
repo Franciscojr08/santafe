@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {PageDadosListagemTurma} from "../../interfaces/turma/pageDadosListagemTurma";
+import {DadosFiltragemTurma} from "../../interfaces/turma/dadosFiltragemTurma";
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,21 @@ export class TurmaService {
       .set('size', size.toString());
 
     return this.http.get<PageDadosListagemTurma>(`${this.API}/listar-por-serie/${serieId}`,{ params });
+  }
+
+  public filtrar(page: number, size: number, filtros: DadosFiltragemTurma): Observable<PageDadosListagemTurma> {
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+
+    Object.keys(filtros).forEach(key => {
+      const value = filtros[key as keyof DadosFiltragemTurma];
+      if (value !== null && value !== undefined && value !== '') {
+        params = params.set(key, value.toString());
+      }
+    });
+
+    console.log(params)
+    return this.http.get<PageDadosListagemTurma>(`${this.API}/filtrar`, { params });
   }
 }
