@@ -5,6 +5,8 @@ import {PageDadosListagemTurma} from "../../interfaces/turma/pageDadosListagemTu
 import {DadosFiltragemTurma} from "../../interfaces/turma/dadosFiltragemTurma";
 import {DadosCadastroTurma} from "../../interfaces/turma/dadosCadastroTurma";
 import {DadosResponse} from "../../interfaces/dadosResponse";
+import {DadosDetalhamentoTurma} from "../../interfaces/turma/dadosDetalhamentoTurma";
+import {DadosAtualizacaoTurma} from "../../interfaces/turma/dadosAtualizacaoTurma";
 
 @Injectable({
   providedIn: 'root'
@@ -42,8 +44,20 @@ export class TurmaService {
     return this.http.get<PageDadosListagemTurma>(`${this.API}/filtrar`, { params });
   }
 
+  public detalhar(id: string): Observable<DadosDetalhamentoTurma> {
+    return this.http.get<DadosDetalhamentoTurma>(`${this.API}/${id}`)
+  }
+
   public cadastrar(dadosCadastro: DadosCadastroTurma): Observable<DadosResponse> {
     return this.http.post<DadosResponse>(this.API,dadosCadastro).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
+  public atualizar(dadosAtualizacao: DadosAtualizacaoTurma): Observable<DadosResponse> {
+    return this.http.put<DadosResponse>(this.API,dadosAtualizacao).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
