@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
+import {catchError, Observable, throwError} from "rxjs";
 import {PageDadosListagemTurma} from "../../interfaces/turma/pageDadosListagemTurma";
 import {DadosFiltragemTurma} from "../../interfaces/turma/dadosFiltragemTurma";
+import {DadosCadastroTurma} from "../../interfaces/turma/dadosCadastroTurma";
+import {DadosResponse} from "../../interfaces/dadosResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +40,13 @@ export class TurmaService {
 
     console.log(params)
     return this.http.get<PageDadosListagemTurma>(`${this.API}/filtrar`, { params });
+  }
+
+  public cadastrar(dadosCadastro: DadosCadastroTurma): Observable<DadosResponse> {
+    return this.http.post<DadosResponse>(this.API,dadosCadastro).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
   }
 }
