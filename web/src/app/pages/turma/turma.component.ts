@@ -133,7 +133,11 @@ export class TurmaComponent {
     }
 
     const filtros = this.turmaForm.value;
-    console.log(filtros);
+
+    if (filtros.serieId === 'Selecione uma opção') {
+      filtros.serieId = null;
+    }
+
     this.turmaService.filtrar(pageIndex,pageSize,filtros).subscribe(response => {
       this.dataSourceTurma = response.content;
       this.totalElementsTurma = response.totalElements;

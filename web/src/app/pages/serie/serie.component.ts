@@ -79,11 +79,17 @@ export class SerieComponent {
   }
 
   listar(pageIndex = 0, pageSize = 10) {
-    this.serieService.listar(pageIndex, pageSize).subscribe(response => {
-      this.dataSource = response.content;
-      this.totalElements = response.totalElements;
-      this.pageSize = response.size;
-      this.pageIndex = response.number;
+    this.serieService.listar(pageIndex, pageSize).subscribe( {
+      next: (response) => {
+        this.dataSource = response.content;
+        this.totalElements = response.totalElements;
+        this.pageSize = response.size;
+        this.pageIndex = response.number;
+      },
+      error: (error: HttpErrorResponse) => {
+        let dadosErros = error.error;
+        this.messageService.add(dadosErros.mensagem, ERROR);
+      }
     });
   }
 
@@ -120,11 +126,18 @@ export class SerieComponent {
     }
 
     const filtroKitLivro = this.serieForm.value;
-    this.serieService.filtrar(pageIndex, pageSize, filtroKitLivro).subscribe(response => {
-      this.dataSource = response.content;
-      this.totalElements = response.totalElements;
-      this.pageSize = response.size;
-      this.pageIndex = response.number;
+    this.serieService.filtrar(pageIndex, pageSize, filtroKitLivro).subscribe( {
+      next: (response) => {
+        this.dataSource = response.content;
+        this.totalElements = response.totalElements;
+        this.pageSize = response.size;
+        this.pageIndex = response.number;
+      },
+        error: (error: HttpErrorResponse) => {
+        let dadosErros = error.error;
+        this.messageService.add(dadosErros.mensagem, ERROR);
+        this.limparFiltros();
+      }
     });
   }
 
