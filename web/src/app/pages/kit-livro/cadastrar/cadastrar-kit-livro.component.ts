@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {BreadcrumbComponent} from "../../../../components/breadcrumb/breadcrumb.component";
-import {MenuNavComponent} from "../../../../components/menu-nav/menu-nav.component";
-import {FooterComponent} from "../../../../components/footer/footer.component";
-import {ConteudoComponent} from "../../../../components/conteudo/conteudo.component";
+import {BreadcrumbComponent} from "../../../components/breadcrumb/breadcrumb.component";
+import {MenuNavComponent} from "../../../components/menu-nav/menu-nav.component";
+import {FooterComponent} from "../../../components/footer/footer.component";
+import {ConteudoComponent} from "../../../components/conteudo/conteudo.component";
 import {
   FormControl,
   FormGroup,
@@ -11,15 +11,15 @@ import {
   Validators
 } from "@angular/forms";
 import {CURRENCY_MASK_CONFIG, CurrencyMaskConfig, CurrencyMaskModule} from "ng2-currency-mask";
-import {BotaoCadastrarComponent} from "../../../../components/botao/botao-cadastrar/botao-cadastrar.component";
-import {BotaoEnviarComponent} from "../../../../components/botao/botao-enviar/botao-enviar.component";
-import {BotaoCancelarComponent} from "../../../../components/botao/botao-cancelar/botao-cancelar.component";
-import {MensagemErroComponent} from "../../../../components/mensagem-erro/mensagem-erro.component";
+import {BotaoCadastrarComponent} from "../../../components/botao/botao-cadastrar/botao-cadastrar.component";
+import {BotaoEnviarComponent} from "../../../components/botao/botao-enviar/botao-enviar.component";
+import {BotaoCancelarComponent} from "../../../components/botao/botao-cancelar/botao-cancelar.component";
+import {MensagemErroComponent} from "../../../components/mensagem-erro/mensagem-erro.component";
 import {Router} from "@angular/router";
-import {KitLivroService} from "../../../../services/kit-livro/kit-livro.service";
+import {KitLivroService} from "../../../services/kit-livro/kit-livro.service";
 import {HttpErrorResponse} from "@angular/common/http";
-import {MessageService} from "../../../../services/message/message.service";
-import {ERROR, INFO, SUCCESS} from "../../../../core/functions";
+import {MessageService} from "../../../services/message/message.service";
+import {ERROR, obterControle, SUCCESS} from "../../../core/functions";
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
@@ -53,6 +53,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   styleUrl: './cadastrar-kit-livro.component.css'
 })
 export class CadastrarKitLivroComponent {
+  protected readonly obterControle = obterControle;
   valor: number;
   kitLivroForm!: FormGroup;
 
@@ -90,16 +91,6 @@ export class CadastrarKitLivroComponent {
         this.limparFormularioERedirecionar();
       }
     });
-  }
-
-  obterControle(nome: string): FormControl {
-    const control = this.kitLivroForm.get(nome);
-
-    if (!control) {
-      throw new Error("Controle de formulário não encontrado: " + nome);
-    }
-
-    return control as FormControl;
   }
 
   limparFormularioERedirecionar() {

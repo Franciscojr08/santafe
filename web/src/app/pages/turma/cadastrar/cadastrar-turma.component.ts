@@ -21,7 +21,7 @@ import {Router} from "@angular/router";
 import {TurmaService} from "../../../services/turma/turma.service";
 import {SerieService} from "../../../services/serie/serie.service";
 import {MessageService} from "../../../services/message/message.service";
-import {ERROR, SUCCESS} from "../../../core/functions";
+import {ERROR, obterControle, selectValidator, SUCCESS} from "../../../core/functions";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
@@ -43,6 +43,7 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrl: './cadastrar-turma.component.css'
 })
 export class CadastrarTurmaComponent {
+  protected readonly obterControle = obterControle;
   turmaForm!: FormGroup;
   series!: DadosComboSerie[]
 
@@ -62,7 +63,7 @@ export class CadastrarTurmaComponent {
   inicializarFormulario() {
     this.turmaForm = new FormGroup({
       nome: new FormControl("", Validators.required),
-      serieId: new FormControl("Selecione uma opção", [Validators.required, this.selectValidator])
+      serieId: new FormControl("Selecione uma opção", [Validators.required, selectValidator])
     });
   }
 
@@ -90,19 +91,5 @@ export class CadastrarTurmaComponent {
   limparFormularioERedirecionar() {
     this.turmaForm.reset();
     this.router.navigateByUrl("/turma")
-  }
-
-  obterControle(nome: string): FormControl {
-    const control = this.turmaForm.get(nome);
-
-    if (!control) {
-      throw new Error("Controle de formulário não encontrado: " + nome);
-    }
-
-    return control as FormControl;
-  }
-
-  selectValidator(control: AbstractControl): ValidationErrors | null {
-    return control.value === 'Selecione uma opção' ? { invalidSelection: true } : null;
   }
 }

@@ -11,7 +11,7 @@ import {MenuNavComponent} from "../../../components/menu-nav/menu-nav.component"
 import {Router} from "@angular/router";
 import {MessageService} from "../../../services/message/message.service";
 import {SerieService} from "../../../services/serie/serie.service";
-import {ERROR, SUCCESS} from "../../../core/functions";
+import {ERROR, obterControle, SUCCESS} from "../../../core/functions";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
@@ -33,6 +33,7 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrl: './cadastrar-serie.component.css'
 })
 export class CadastrarSerieComponent {
+  protected readonly obterControle = obterControle;
   serieForm!: FormGroup;
 
   constructor(
@@ -65,16 +66,6 @@ export class CadastrarSerieComponent {
         this.limparFormularioERedirecionar();
       }
     });
-  }
-
-  obterControle(nome: string): FormControl {
-    const control = this.serieForm.get(nome);
-
-    if (!control) {
-      throw new Error("Controle de formulário não encontrado: " + nome);
-    }
-
-    return control as FormControl;
   }
 
   limparFormularioERedirecionar() {

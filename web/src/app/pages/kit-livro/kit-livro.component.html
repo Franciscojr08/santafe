@@ -32,7 +32,6 @@
             >
           </div>
 
-
           <div class="div-content" style="width: 30%">
             <label for="quantidadeDisponivel">Disponível:</label>
             <input
@@ -52,8 +51,8 @@
         <button
           class="button-filter"
           type="submit"
-          [disabled]="!filtrosPreenchidos()"
-          [ngClass]="filtrosPreenchidos() ? 'button-filter' : 'button-filter-desabilitado'"
+          [disabled]="!filtrosPreenchidos(filtroKitLivroForm)"
+          [ngClass]="filtrosPreenchidos(filtroKitLivroForm) ? 'button-filter' : 'button-filter-desabilitado'"
           (click)="filtrar()"
         >
           <fa-icon [icon]="faFilter"></fa-icon>

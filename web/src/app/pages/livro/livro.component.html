@@ -77,8 +77,8 @@
         <button
           class="button-filter"
           type="submit"
-          [disabled]="!filtrosPreenchidos()"
-          [ngClass]="filtrosPreenchidos() ? 'button-filter' : 'button-filter-desabilitado'"
+          [disabled]="!filtrosPreenchidos(livroForm)"
+          [ngClass]="filtrosPreenchidos(livroForm) ? 'button-filter' : 'button-filter-desabilitado'"
           (click)="filtrar()"
         >
           <fa-icon [icon]="faFilter"></fa-icon>

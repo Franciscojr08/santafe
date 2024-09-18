@@ -18,7 +18,7 @@ import {NgClass, NgForOf} from "@angular/common";
 import {faBroom, faFilter} from "@fortawesome/free-solid-svg-icons";
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {CurrencyMaskModule} from "ng2-currency-mask";
-import {ERROR, SUCCESS} from "../../core/functions";
+import {ERROR, filtrosPreenchidos} from "../../core/functions";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
@@ -44,6 +44,7 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrl: './livro.component.css'
 })
 export class LivroComponent {
+  protected readonly filtrosPreenchidos = filtrosPreenchidos;
   protected readonly faBroom = faBroom;
   protected readonly faFilter = faFilter;
   protected readonly LISTAGEM_LIVRO = LISTAGEM_LIVRO;
@@ -123,19 +124,8 @@ export class LivroComponent {
     return (this.injetor.get(LivroComponent).constructor as any).ɵcmp.selector;
   }
 
-  filtrosPreenchidos() {
-    return Object.keys(this.livroForm.controls).some(key => {
-      const control = this.livroForm.get(key);
-      return control?.value !== "" &&
-        control?.value !== "Selecione uma opção" &&
-        control?.value !== null &&
-        control?.value !== undefined &&
-        control?.value !== 0;
-    });
-  }
-
   filtrar(pageIndex = 0, pageSize = 10) {
-    if (!this.filtrosPreenchidos()) {
+    if (!filtrosPreenchidos(this.livroForm)) {
       this.listar(pageIndex, pageSize);
       return;
     }

@@ -22,19 +22,19 @@
             <div class="div-content" style="width: 40%">
               <label for="nome">Nome: <em>*</em></label>
               <input type="text" name="nome" id="nome" placeholder="Nome" style="width: 88%" formControlName="nome">
-              <app-mensagem-erro [control]="obterControle('nome')"></app-mensagem-erro>
+              <app-mensagem-erro [control]="obterControle(kitLivroForm,'nome')"></app-mensagem-erro>
             </div>
 
             <div class="div-content" style="width: 15%">
               <label for="valor">Valor: <em>*</em></label>
               <input currencyMask id="valor" name="valor" style="width: 60%" formControlName="valor">
-              <app-mensagem-erro [control]="obterControle('valor')"></app-mensagem-erro>
+              <app-mensagem-erro [control]="obterControle(kitLivroForm,'valor')"></app-mensagem-erro>
             </div>
 
             <div class="div-content" style="width: 18%">
               <label for="quantidadeDisponivel">Disponível: <em>*</em></label>
               <input type="number" name="quantidadeDisponivel" min="0" id="quantidadeDisponivel" placeholder="Quantidade" style="width: 60%" formControlName="quantidadeDisponivel">
-              <app-mensagem-erro [control]="obterControle('quantidadeDisponivel')"></app-mensagem-erro>
+              <app-mensagem-erro [control]="obterControle(kitLivroForm,'quantidadeDisponivel')"></app-mensagem-erro>
             </div>
           </div>
 

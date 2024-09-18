@@ -18,7 +18,7 @@ import {faBroom, faFilter} from "@fortawesome/free-solid-svg-icons";
 import {NgClass} from "@angular/common";
 import {DadosExclusao} from "../../interfaces/dadosExclusao";
 import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
-import {ERROR, SUCCESS, WARNING} from "../../core/functions";
+import {ERROR, filtrosPreenchidos, SUCCESS, WARNING} from "../../core/functions";
 
 @Component({
   selector: 'app-serie',
@@ -41,6 +41,7 @@ import {ERROR, SUCCESS, WARNING} from "../../core/functions";
   styleUrl: './serie.component.css'
 })
 export class SerieComponent {
+  protected readonly filtrosPreenchidos = filtrosPreenchidos;
   protected readonly faFilter = faFilter;
   protected readonly faBroom = faBroom;
 
@@ -99,15 +100,8 @@ export class SerieComponent {
     });
   }
 
-  filtrosPreenchidos() {
-    return Object.keys(this.serieForm.controls).some(key => {
-      const control = this.serieForm.get(key);
-      return control?.value !== "" && control?.value !== null && control?.value !== undefined;
-    });
-  }
-
   onPageChange(event: any) {
-    if (this.filtrosPreenchidos()) {
+    if (filtrosPreenchidos(this.serieForm)) {
       this.filtrar(event.pageIndex, event.pageSize);
       return;
     }
@@ -120,7 +114,7 @@ export class SerieComponent {
   }
 
   filtrar(pageIndex = 0, pageSize = 10) {
-    if (!this.filtrosPreenchidos()) {
+    if (!filtrosPreenchidos(this.serieForm)) {
       this.listar(pageIndex, pageSize);
       return;
     }

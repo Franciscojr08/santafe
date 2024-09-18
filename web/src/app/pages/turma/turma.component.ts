@@ -6,7 +6,6 @@ import {MessagesComponent} from "../../components/messages/messages.component";
 import {FooterComponent} from "../../components/footer/footer.component";
 import {FieldsetComponent} from "../../components/fieldset/fieldset.component";
 import {LISTAGEM_TURMA} from "../../const/turma/const-turma";
-import {Router} from "@angular/router";
 import {TurmaService} from "../../services/turma/turma.service";
 import {MessageService} from "../../services/message/message.service";
 import {TabelaGenericaComponent} from "../../components/tabela-generica/tabela-generica.component";
@@ -20,7 +19,7 @@ import {DadosComboSerie} from "../../interfaces/serie/dadosComboSerie";
 import {NotificationService} from "../../services/notification/notification.service";
 import {DadosExclusao} from "../../interfaces/dadosExclusao";
 import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
-import {ERROR, SUCCESS, WARNING} from "../../core/functions";
+import {ERROR, filtrosPreenchidos, SUCCESS, WARNING} from "../../core/functions";
 
 @Component({
   selector: 'app-turma',
@@ -44,6 +43,7 @@ import {ERROR, SUCCESS, WARNING} from "../../core/functions";
   styleUrl: './turma.component.css'
 })
 export class TurmaComponent {
+  protected readonly filtrosPreenchidos = filtrosPreenchidos;
   protected readonly faFilter = faFilter;
   protected readonly faBroom = faBroom;
   protected readonly LISTAGEM_TURMA = LISTAGEM_TURMA;
@@ -64,7 +64,6 @@ export class TurmaComponent {
   series!: DadosComboSerie[]
 
   constructor(
-    private router: Router,
     private turmaService: TurmaService,
     private serieService: SerieService,
     private messageService: MessageService,
@@ -93,11 +92,17 @@ export class TurmaComponent {
   }
 
   listar(pageIndex = 0, pageSize = 10) {
-    this.turmaService.listar(pageIndex, pageSize).subscribe(response => {
-      this.dataSourceTurma = response.content;
-      this.totalElementsTurma = response.totalElements;
-      this.pageSizeTurma = response.size;
-      this.pageIndexTurma = response.number;
+    this.turmaService.listar(pageIndex, pageSize).subscribe( {
+      next: (response) => {
+        this.dataSourceTurma = response.content;
+        this.totalElementsTurma = response.totalElements;
+        this.pageSizeTurma = response.size;
+        this.pageIndexTurma = response.number;
+      },
+        error: (error: HttpErrorResponse) => {
+        let dadosErros = error.error;
+        this.messageService.add(dadosErros.mensagem, ERROR);
+      }
     });
   }
 
@@ -108,7 +113,7 @@ export class TurmaComponent {
   }
 
   onPageChangeTurma(event: any) {
-    if (this.filtrosPreenchidos()) {
+    if (filtrosPreenchidos(this.turmaForm)) {
       this.filtrar(event.pageIndex, event.pageSize);
       return;
     }
@@ -116,18 +121,9 @@ export class TurmaComponent {
     this.listar(event.pageIndex, event.pageSize);
   }
 
-  filtrosPreenchidos() {
-    return Object.keys(this.turmaForm.controls).some(key => {
-      const control = this.turmaForm.get(key);
-      return control?.value !== "" &&
-        control?.value !== "Selecione uma opção" &&
-        control?.value !== null &&
-        control?.value !== undefined;
-    });
-  }
 
   filtrar(pageIndex = 0, pageSize = 10) {
-    if (!this.filtrosPreenchidos()) {
+    if (!filtrosPreenchidos(this.turmaForm)) {
       this.listar(pageIndex, pageSize);
       return;
     }
@@ -138,11 +134,18 @@ export class TurmaComponent {
       filtros.serieId = null;
     }
 
-    this.turmaService.filtrar(pageIndex,pageSize,filtros).subscribe(response => {
-      this.dataSourceTurma = response.content;
-      this.totalElementsTurma = response.totalElements;
-      this.pageSizeTurma = response.size;
-      this.pageIndexTurma = response.number;
+    this.turmaService.filtrar(pageIndex,pageSize,filtros).subscribe({
+      next: (response) => {
+        this.dataSourceTurma = response.content;
+        this.totalElementsTurma = response.totalElements;
+        this.pageSizeTurma = response.size;
+        this.pageIndexTurma = response.number;
+      },
+        error: (error: HttpErrorResponse) => {
+        let dadosErros = error.error;
+        this.messageService.add(dadosErros.mensagem, ERROR);
+        this.limparFiltros();
+      }
     })
   }
 

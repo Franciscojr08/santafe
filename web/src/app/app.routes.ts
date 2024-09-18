@@ -8,9 +8,7 @@ import {ClienteComponent} from "./pages/cliente/cliente.component";
 import {AlunoComponent} from "./pages/aluno/aluno.component";
 import {PedidoComponent} from "./pages/pedido/pedido.component";
 import {PendenciaComponent} from "./pages/pendencia/pendencia.component";
-import {
-  CadastrarKitLivroComponent
-} from "./pages/kit-livro/cadastrar/cadastrar-kit-livro/cadastrar-kit-livro.component";
+import {CadastrarKitLivroComponent} from "./pages/kit-livro/cadastrar/cadastrar-kit-livro.component";
 import {EditarKitLivroComponent} from "./pages/kit-livro/editar/editar-kit-livro.component";
 import {CadastrarSerieComponent} from "./pages/serie/cadastrar/cadastrar-serie.component";
 import {EditarSerieComponent} from "./pages/serie/editar/editar-serie.component";

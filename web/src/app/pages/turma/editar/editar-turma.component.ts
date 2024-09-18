@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FooterComponent} from "../../../components/footer/footer.component";
 import {ConteudoComponent} from "../../../components/conteudo/conteudo.component";
 import {BreadcrumbComponent} from "../../../components/breadcrumb/breadcrumb.component";
@@ -17,7 +17,7 @@ import {SerieService} from "../../../services/serie/serie.service";
 import {TurmaService} from "../../../services/turma/turma.service";
 import {MessageService} from "../../../services/message/message.service";
 import {AlunoService} from "../../../services/aluno/aluno.service";
-import {ERROR, SUCCESS} from "../../../core/functions";
+import {ERROR, formatDate, obterControle, selectValidator, SUCCESS} from "../../../core/functions";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
 import {BotaoSalvarComponent} from "../../../components/botao/botao-salvar/botao-salvar.component";
@@ -25,7 +25,6 @@ import {BotaoVoltarComponent} from "../../../components/botao/botao-voltar/botao
 import {MensagemErroComponent} from "../../../components/mensagem-erro/mensagem-erro.component";
 import {DadosComboSerie} from "../../../interfaces/serie/dadosComboSerie";
 import {NgForOf} from "@angular/common";
-import {LISTAGEM_TURMA} from "../../../const/turma/const-turma";
 import {TabelaGenericaComponent} from "../../../components/tabela-generica/tabela-generica.component";
 import {LISTAGEM_ALUNO} from "../../../const/aluno/const-aluno";
 import {MessagesComponent} from "../../../components/messages/messages.component";
@@ -60,7 +59,8 @@ export class EditarTurmaComponent {
   turmaEditar!: string;
   turmaForm!: FormGroup;
   turmaId!: number;
-  series!: DadosComboSerie[]
+  series!: DadosComboSerie[];
+  protected readonly obterControle = obterControle;
 
   constructor(
     private router: Router,
@@ -87,10 +87,10 @@ export class EditarTurmaComponent {
       return;
     }
 
-    this.turmaService.detalhar(idConsulta).subscribe( {
+    this.turmaService.detalhar(idConsulta).subscribe({
       next: (dados) => {
-        dados.dataCadastro = this.formatDate(dados.dataCadastro);
-        dados.dataAtualizacao = this.formatDate(dados.dataAtualizacao);
+        dados.dataCadastro = formatDate(dados.dataCadastro);
+        dados.dataAtualizacao = formatDate(dados.dataAtualizacao);
 
         this.turmaEditar = `${dados.id}: ${dados.nome}`;
         this.turmaId = dados.id;
@@ -114,7 +114,7 @@ export class EditarTurmaComponent {
 
   atualizarTurma() {
     const turma = this.turmaForm.value;
-    this.turmaService.atualizar(turma).subscribe( {
+    this.turmaService.atualizar(turma).subscribe({
       next: (dadosResponse) => {
         this.messageService.add("Turma atualizada com sucesso!", SUCCESS);
         this.carregarTurma();
@@ -133,39 +133,10 @@ export class EditarTurmaComponent {
     this.turmaForm = new FormGroup({
       id: new FormControl(""),
       nome: new FormControl("", Validators.required),
-      serieId: new FormControl("Selecione uma opção", [Validators.required, this.selectValidator]),
+      serieId: new FormControl("Selecione uma opção", [Validators.required, selectValidator]),
       dataCadastro: new FormControl(""),
       dataAtualizacao: new FormControl("")
     });
-  }
-
-  selectValidator(control: AbstractControl): ValidationErrors | null {
-    return control.value === 'Selecione uma opção' ? { invalidSelection: true } : null;
-  }
-
-  formatDate(dateString?: string): string {
-    if (!dateString) {
-      return "";
-    }
-
-    const date = new Date(dateString);
-    const day = ('0' + date.getDate()).slice(-2);
-    const month = ('0' + (date.getMonth() + 1)).slice(-2);
-    const year = date.getFullYear();
-    const hours = ('0' + date.getHours()).slice(-2);
-    const minutes = ('0' + date.getMinutes()).slice(-2);
-
-    return `${day}/${month}/${year} ${hours}:${minutes}`;
-  }
-
-  obterControle(nome: string): FormControl {
-    const control = this.turmaForm.get(nome);
-
-    if (!control) {
-      throw new Error("Controle de formulário não encontrado: " + nome);
-    }
-
-    return control as FormControl;
   }
 
   redirect() {
@@ -201,16 +172,20 @@ export class EditarTurmaComponent {
     this.listarAlunos(event.pageIndex, event.pageSize);
   }
 
-
   listarAlunos(pageIndex = 0, pageSize = 10) {
     if (this.turmaId) {
-      this.alunoService.listarPorTurma(this.turmaId, pageIndex, pageSize)
-        .subscribe(response => {
+      this.alunoService.listarPorTurma(this.turmaId, pageIndex, pageSize).subscribe({
+        next: (response) => {
           this.dataSourceAluno = response.content;
           this.totalElementsAluno = response.totalElements;
           this.pageSizeAluno = response.size;
           this.pageIndexAluno = response.number;
-        });
+        },
+        error: (error: HttpErrorResponse) => {
+          let dadosErros = error.error;
+          this.messageService.add(dadosErros.mensagem, ERROR);
+        }
+      });
     }
   }
 }

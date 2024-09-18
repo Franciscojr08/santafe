@@ -37,8 +37,8 @@
         <button
           class="button-filter"
           type="submit"
-          [disabled]="!filtrosPreenchidos()"
-          [ngClass]="filtrosPreenchidos() ? 'button-filter' : 'button-filter-desabilitado'"
+          [disabled]="!filtrosPreenchidos(turmaForm)"
+          [ngClass]="filtrosPreenchidos(turmaForm) ? 'button-filter' : 'button-filter-desabilitado'"
           (click)="filtrar()"
         >
           <fa-icon [icon]="faFilter"></fa-icon>

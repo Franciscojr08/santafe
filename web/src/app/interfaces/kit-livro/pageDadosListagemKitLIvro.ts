@@ -1,30 +1,6 @@
 import {DadosListagemKitLivro} from "./dadosListagemKitLivro";
+import {PageDadosListagem} from "../pageDadosListagem";
 
-export interface PageDadosListagemKitLivro {
-  totalPages: number;
-  totalElements: number;
-  size: number;
+export interface PageDadosListagemKitLivro extends PageDadosListagem{
   content: DadosListagemKitLivro[];
-  number: number;
-  sort: {
-    empty: boolean;
-    sorted: boolean;
-    unsorted: boolean;
-  };
-  pageable: {
-    offset: number;
-    sort: {
-      empty: boolean;
-      sorted: boolean;
-      unsorted: boolean;
-    };
-    pageNumber: number;
-    pageSize: number;
-    paged: boolean;
-    unpaged: boolean;
-  };
-  first: boolean;
-  last: boolean;
-  numberOfElements: number;
-  empty: boolean;
 }

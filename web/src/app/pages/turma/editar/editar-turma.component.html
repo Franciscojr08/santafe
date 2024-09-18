@@ -12,7 +12,7 @@
 
 <app-conteudo>
   <app-messages></app-messages>
-  
+
   <div>
     <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
       <mat-tab label="Turma">
@@ -23,7 +23,7 @@
             <div class="div-content" style="width: 40%">
               <label for="nome">Nome: <em>*</em></label>
               <input type="text" name="nome" id="nome" placeholder="Nome" style="width: 88%" formControlName="nome">
-              <app-mensagem-erro [control]="obterControle('nome')"></app-mensagem-erro>
+              <app-mensagem-erro [control]="obterControle(turmaForm,'nome')"></app-mensagem-erro>
             </div>
 
             <div class="div-content" style="width: 40%">
@@ -31,7 +31,7 @@
               <select name="serieId" id="serieId" formControlName="serieId">
                 <option *ngFor="let serie of series" [value]="serie.id">{{ serie.value }}</option>
               </select>
-              <app-mensagem-erro [control]="obterControle('serieId')"></app-mensagem-erro>
+              <app-mensagem-erro [control]="obterControle(turmaForm,'serieId')"></app-mensagem-erro>
             </div>
           </div>
 

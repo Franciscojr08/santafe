@@ -7,7 +7,7 @@ import {FooterComponent} from "../../../components/footer/footer.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MessageService} from "../../../services/message/message.service";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ERROR, SUCCESS} from "../../../core/functions";
+import {ERROR, formatDate, obterControle, SUCCESS} from "../../../core/functions";
 import {BotaoSalvarComponent} from "../../../components/botao/botao-salvar/botao-salvar.component";
 import {BotaoVoltarComponent} from "../../../components/botao/botao-voltar/botao-voltar.component";
 import {CurrencyMaskModule} from "ng2-currency-mask";
@@ -51,6 +51,7 @@ export class EditarSerieComponent {
   serieEditar!: string;
   serieForm!: FormGroup;
   serieId!: number;
+  protected readonly obterControle = obterControle;
 
   constructor(
     private router: Router,
@@ -87,8 +88,8 @@ export class EditarSerieComponent {
 
     this.serieService.detalhar(idConsulta).subscribe({
       next: (dados) => {
-        dados.dataCadastro = this.formatDate(dados.dataCadastro);
-        dados.dataAtualizacao = this.formatDate(dados.dataAtualizacao);
+        dados.dataCadastro = formatDate(dados.dataCadastro);
+        dados.dataAtualizacao = formatDate(dados.dataAtualizacao);
 
         this.serieEditar = `${dados.id}: ${dados.nome}`;
         this.serieId = dados.id;
@@ -122,37 +123,12 @@ export class EditarSerieComponent {
     });
   }
 
-  obterControle(nome: string): FormControl {
-    const control = this.serieForm.get(nome);
-
-    if (!control) {
-      throw new Error("Controle de formulário não encontrado: " + nome);
-    }
-
-    return control as FormControl;
-  }
-
   redirect() {
     this.router.navigateByUrl("/serie");
   }
 
   redirectEdit() {
     this.router.navigate([`/serie/editar/${this.serieId}`]);
-  }
-
-  formatDate(dateString?: string): string {
-    if (!dateString) {
-      return "";
-    }
-
-    const date = new Date(dateString);
-    const day = ('0' + date.getDate()).slice(-2);
-    const month = ('0' + (date.getMonth() + 1)).slice(-2);
-    const year = date.getFullYear();
-    const hours = ('0' + date.getHours()).slice(-2);
-    const minutes = ('0' + date.getMinutes()).slice(-2);
-
-    return `${day}/${month}/${year} ${hours}:${minutes}`;
   }
 
   ////////////

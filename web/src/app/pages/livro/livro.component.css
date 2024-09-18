@@ -1,130 +1,20 @@
-.fieldset-content {
-  padding-bottom: .5rem;
-}
-
-.fieldset-content .botoes {
-  margin: 0 auto;
-}
-
-.button-filter {
-  background-color: #13aa52;
-  border: 1px solid #13aa52;
-  border-radius: 4px;
-  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  font-family: "Changa One", sans-serif;
-  font-weight: 400;
-  outline: none;
-  outline: 0;
-  padding: 8px 12px;
-  text-align: center;
-  transform: translateY(0);
-  transition: transform 150ms, box-shadow 150ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  margin-right: 3em;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.button-filter:hover {
-  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
-  transform: translateY(-2px);
-}
-
-.button-clear {
-  background-color: #ffe54c;
-  border: 1px solid #ffe54c;
-  border-radius: 4px;
-  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
-  box-sizing: border-box;
-  color: #000;
-  cursor: pointer;
-  font-family: "Changa One", sans-serif;
-  font-weight: 400;
-  outline: none;
-  outline: 0;
-  padding: 8px 12px;
-  text-align: center;
-  transform: translateY(0);
-  transition: transform 150ms, box-shadow 150ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  margin-right: 3em;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.button-clear:hover {
-  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
-  transform: translateY(-2px);
-}
-
 .filtro {
-  display: flex;
-  align-items: flex-end;
-  padding-left: 0.25em;
-  padding-bottom: 1em;
+  padding-bottom: 1em!important;
 }
-
-input:focus, select:focus {
-  box-shadow: 0 0 0 0;
-  outline: 0;
-}
-
-input {
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  padding: 5px 0;
-  color: rgba(0, 0, 0, 0.8);
-}
-
-.div-content {
-  margin-right: 2em;
-}
-
-label {
-  margin-right: 5px;
-}
-
-.button-filter-desabilitado {
-  background-color: #ADB5BD;
-  border: 1px solid #ADB5BD;
-  border-radius: 4px;
-  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
-  box-sizing: border-box;
-  color: #fff;
-  font-family: "Changa One", sans-serif;
-  font-weight: 400;
-  outline: none;
-  outline: 0;
-  padding: 8px 12px;
-  text-align: center;
-  transform: translateY(0);
-  transition: transform 150ms, box-shadow 150ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-right: 3em;
-  cursor:not-allowed;
-}
-
 select {
-  width: 20.5em;
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  padding: 5px 0;
-  color: rgba(0, 0, 0, 0.8);
+  width: 20.5em!important;
 }
 
 .botoes {
   display: flex;
   justify-content: flex-end;
+}
+
+.fieldset-content {
+  margin: 0 auto!important;
+  display: block!important;
+}
+
+.filtros {
+  width: 100%!important;
 }
