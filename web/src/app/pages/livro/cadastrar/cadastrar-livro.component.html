@@ -1,0 +1,74 @@
+<app-menu-nav></app-menu-nav>
+<app-breadcrumb
+  [firstItem]="{ name: 'Home', link: '/home' }"
+  [items]="[
+    { name: 'Livros', link: '/livros' },
+  ]"
+  [currentItem]="{ name: 'Cadastrar' }"
+>
+</app-breadcrumb>
+
+<app-conteudo>
+  <form [formGroup]="livroForm" (ngSubmit)="cadastrarLivro()">
+    <div class="linha_dados_juntos">
+      <div class="div-content" style="width: 30%">
+        <label for="nome">Nome: <em>*</em></label>
+        <input type="text" name="nome" id="nome" placeholder="Nome" style="width: 84%" formControlName="nome">
+        <app-mensagem-erro [control]="obterControle(livroForm,'nome')"></app-mensagem-erro>
+      </div>
+
+      <div class="div-content">
+        <label for="identificador">Identificador: <em>*</em></label>
+        <input type="text" id="identificador" name="identificador" placeholder="Identificador" style="width: 8em"
+               formControlName="identificador">
+        <app-mensagem-erro [control]="obterControle(livroForm,'identificador')"></app-mensagem-erro>
+      </div>
+
+      <div class="div-content">
+        <label for="usoInterno">Uso interno: <em>*</em></label>
+        <select name="usoInterno" id="usoInterno" formControlName="usoInterno" style="width: 12em" (change)="changeObrigatoriedadeSerie($event)">
+          <option style="display: none">Selecione uma opção</option>
+          <option value="1">Sim</option>
+          <option value="0">Não</option>
+        </select>
+        <app-mensagem-erro [control]="obterControle(livroForm,'usoInterno')"></app-mensagem-erro>
+      </div>
+    </div>
+
+    <div class="linha_dados_juntos">
+      <div class="div-content" style="width: 30%">
+        <label for="serieId">
+          Série: <em *ngIf="isSerieIdRequired()">*</em>
+        </label>
+        <select name="serieId" id="serieId" formControlName="serieId">
+          <option style="display: none">Selecione uma opção</option>
+          <option *ngFor="let serie of series" [value]="serie.id">{{ serie.value }}</option>
+        </select>
+      </div>
+
+      <div class="div-content" style="width: 13.7em">
+        <label for="valor">Valor: <em>*</em></label>
+        <input currencyMask id="valor" name="valor" style="width: 60%" formControlName="valor">
+        <app-mensagem-erro [control]="obterControle(livroForm,'valor')"></app-mensagem-erro>
+      </div>
+
+      <div class="div-content" style="width: 18%">
+        <label for="quantidadeDisponivel">Disponível: <em>*</em></label>
+        <input type="number" name="quantidadeDisponivel" min="0" id="quantidadeDisponivel" placeholder="Quantidade"
+               style="width: 60%" formControlName="quantidadeDisponivel">
+        <app-mensagem-erro [control]="obterControle(livroForm,'quantidadeDisponivel')"></app-mensagem-erro>
+      </div>
+    </div>
+
+    <div class="conteudo_botoes">
+      <app-botao-enviar
+        [disabled]="livroForm.invalid"
+        [buttonClass]="livroForm.valid ? 'button-cadastro' : 'button-cadastro-desabilitado'"
+      >
+      </app-botao-enviar>
+      <app-botao-cancelar (click)="limparFormularioERedirecionar()"></app-botao-cancelar>
+    </div>
+  </form>
+</app-conteudo>
+
+<app-footer></app-footer>

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
+import {catchError, Observable, throwError} from "rxjs";
 import {PageDadosListagemLivro} from "../../interfaces/livro/pageDadosListagemLivro";
 import {DadosFiltragemSerie} from "../../interfaces/serie/dadosFiltragemSerie";
+import {DadosCadastroLivro} from "../../interfaces/livro/dadosCadastroLivro";
+import {DadosResponse} from "../../interfaces/dadosResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +39,13 @@ export class LivroService {
     });
 
     return this.http.get<PageDadosListagemLivro>(`${this.API}/filtrar`, { params });
+  }
+
+  public cadastrar(dadosCadastro: DadosCadastroLivro): Observable<DadosResponse> {
+    return this.http.post<DadosResponse>(this.API,dadosCadastro).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
   }
 }

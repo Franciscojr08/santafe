@@ -121,7 +121,6 @@ export class TurmaComponent {
     this.listar(event.pageIndex, event.pageSize);
   }
 
-
   filtrar(pageIndex = 0, pageSize = 10) {
     if (!filtrosPreenchidos(this.turmaForm)) {
       this.listar(pageIndex, pageSize);

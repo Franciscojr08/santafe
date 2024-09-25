@@ -14,6 +14,7 @@ import {CadastrarSerieComponent} from "./pages/serie/cadastrar/cadastrar-serie.c
 import {EditarSerieComponent} from "./pages/serie/editar/editar-serie.component";
 import {CadastrarTurmaComponent} from "./pages/turma/cadastrar/cadastrar-turma.component";
 import {EditarTurmaComponent} from "./pages/turma/editar/editar-turma.component";
+import {CadastrarLivroComponent} from "./pages/livro/cadastrar/cadastrar-livro.component";
 
 export const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -27,6 +28,7 @@ export const routes: Routes = [
   { path: "kit-livro/editar/:id", component: EditarKitLivroComponent },
   { path: "kit-livro/editar", redirectTo: "/kit-livro" },
   { path: "livro", component: LivroComponent },
+  { path: "livro/cadastrar", component: CadastrarLivroComponent },
   { path: "serie", component: SerieComponent },
   { path: "serie/cadastrar", component: CadastrarSerieComponent },
   { path: "serie/editar/:id", component: EditarSerieComponent },
