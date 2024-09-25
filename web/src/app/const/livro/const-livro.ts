@@ -1,8 +1,8 @@
 export const LISTAGEM_LIVRO: { [key: string]: string } = {
   id: "ID",
-  identificador: "Identificador",
+  identificador: "ISBN",
   nome: "Nome",
-  usoInterno: "Uso Interno",
+  usoInterno: "Interno",
   serieNome: "Série",
   valor: "Valor",
   quantidadeDisponivel: "Disponível",

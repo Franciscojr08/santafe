@@ -18,8 +18,9 @@ import {NgClass, NgForOf} from "@angular/common";
 import {faBroom, faFilter} from "@fortawesome/free-solid-svg-icons";
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {CurrencyMaskModule} from "ng2-currency-mask";
-import {ERROR, filtrosPreenchidos} from "../../core/functions";
-import {HttpErrorResponse} from "@angular/common/http";
+import {ERROR, filtrosPreenchidos, SUCCESS, WARNING} from "../../core/functions";
+import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
+import {DadosExclusao} from "../../interfaces/dadosExclusao";
 
 @Component({
   selector: 'app-livro',
@@ -78,6 +79,12 @@ export class LivroComponent {
     ) {
     this.listar();
     this.carregarComboSerie();
+
+    this.notificationService.deleteConfirmed$.subscribe((dadosExclusao: DadosExclusao) => {
+      if (dadosExclusao.component == this.getSeletorComponent()) {
+        this.deletarLivro(dadosExclusao.id);
+      }
+    });
   }
 
   ngOnInit() {
@@ -165,5 +172,23 @@ export class LivroComponent {
     this.livroForm.get("usoInterno")?.setValue("Selecione uma opção");
     this.livroForm.get("valor")?.setValue(0);
     this.listar();
+  }
+
+  deletarLivro(id: number) {
+    this.livroService.deletar(id).subscribe( {
+      next: (dadosResponse) => {
+        if (dadosResponse.status == HttpStatusCode.Ok) {
+          this.listar();
+          this.messageService.add("Livro deletado com sucesso!",SUCCESS);
+          return;
+        }
+
+        this.messageService.add("Ocorreu um erro ao tentar excluir o livro. Tente novamente!",WARNING);
+      },
+      error: (error: HttpErrorResponse) => {
+        let dadosErros = error.error;
+        this.messageService.add(dadosErros.mensagem,ERROR);
+      }
+    });
   }
 }

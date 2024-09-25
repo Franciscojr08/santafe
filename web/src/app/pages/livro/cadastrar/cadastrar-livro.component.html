@@ -18,7 +18,7 @@
       </div>
 
       <div class="div-content">
-        <label for="identificador">Identificador: <em>*</em></label>
+        <label for="identificador">ISBN: <em>*</em></label>
         <input type="text" id="identificador" name="identificador" placeholder="Identificador" style="width: 8em"
                formControlName="identificador">
         <app-mensagem-erro [control]="obterControle(livroForm,'identificador')"></app-mensagem-erro>
@@ -46,9 +46,9 @@
         </select>
       </div>
 
-      <div class="div-content" style="width: 13.7em">
+      <div class="div-content" style="width: 10.3em!important;">
         <label for="valor">Valor: <em>*</em></label>
-        <input currencyMask id="valor" name="valor" style="width: 60%" formControlName="valor">
+        <input currencyMask id="valor" name="valor" style="width: 67%" formControlName="valor">
         <app-mensagem-erro [control]="obterControle(livroForm,'valor')"></app-mensagem-erro>
       </div>
 
