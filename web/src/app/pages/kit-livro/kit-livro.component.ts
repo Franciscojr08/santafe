@@ -16,7 +16,7 @@ import {MessagesComponent} from "../../components/messages/messages.component";
 import {CurrencyMaskModule} from "ng2-currency-mask";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgClass} from "@angular/common";
-import {ERROR, filtrosPreenchidos, SUCCESS, WARNING} from "../../core/functions";
+import {ERROR, filtrosPreenchidos, SUCCESS, WARNING} from "../../utils/functions";
 import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {MessageService} from "../../services/message/message.service";
 import {NotificationService} from "../../services/notification/notification.service";

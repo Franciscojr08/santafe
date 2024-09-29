@@ -18,7 +18,7 @@ import {NgClass, NgForOf} from "@angular/common";
 import {faBroom, faFilter} from "@fortawesome/free-solid-svg-icons";
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {CurrencyMaskModule} from "ng2-currency-mask";
-import {ERROR, filtrosPreenchidos, SUCCESS, WARNING} from "../../core/functions";
+import {ERROR, filtrosPreenchidos, SUCCESS, WARNING} from "../../utils/functions";
 import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {DadosExclusao} from "../../interfaces/dadosExclusao";
 

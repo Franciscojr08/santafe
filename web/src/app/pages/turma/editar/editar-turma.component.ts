@@ -17,7 +17,7 @@ import {SerieService} from "../../../services/serie/serie.service";
 import {TurmaService} from "../../../services/turma/turma.service";
 import {MessageService} from "../../../services/message/message.service";
 import {AlunoService} from "../../../services/aluno/aluno.service";
-import {ERROR, formatDate, obterControle, selectValidator, SUCCESS} from "../../../core/functions";
+import {ERROR, formatDate, obterControle, selectValidator, SUCCESS} from "../../../utils/functions";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
 import {BotaoSalvarComponent} from "../../../components/botao/botao-salvar/botao-salvar.component";

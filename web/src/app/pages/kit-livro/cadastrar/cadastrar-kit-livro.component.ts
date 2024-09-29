@@ -19,7 +19,7 @@ import {Router} from "@angular/router";
 import {KitLivroService} from "../../../services/kit-livro/kit-livro.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MessageService} from "../../../services/message/message.service";
-import {ERROR, obterControle, SUCCESS} from "../../../core/functions";
+import {ERROR, obterControle, SUCCESS} from "../../../utils/functions";
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",

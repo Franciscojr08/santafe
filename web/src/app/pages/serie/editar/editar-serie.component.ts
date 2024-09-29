@@ -7,7 +7,7 @@ import {FooterComponent} from "../../../components/footer/footer.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MessageService} from "../../../services/message/message.service";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ERROR, formatDate, obterControle, SUCCESS} from "../../../core/functions";
+import {ERROR, formatDate, obterControle, SUCCESS} from "../../../utils/functions";
 import {BotaoSalvarComponent} from "../../../components/botao/botao-salvar/botao-salvar.component";
 import {BotaoVoltarComponent} from "../../../components/botao/botao-voltar/botao-voltar.component";
 import {CurrencyMaskModule} from "ng2-currency-mask";

@@ -19,7 +19,7 @@ import {DadosComboSerie} from "../../interfaces/serie/dadosComboSerie";
 import {NotificationService} from "../../services/notification/notification.service";
 import {DadosExclusao} from "../../interfaces/dadosExclusao";
 import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
-import {ERROR, filtrosPreenchidos, SUCCESS, WARNING} from "../../core/functions";
+import {ERROR, filtrosPreenchidos, SUCCESS, WARNING} from "../../utils/functions";
 
 @Component({
   selector: 'app-turma',

@@ -18,4 +18,12 @@ export class ListaPendenciaService {
 
     return this.http.get<PageDadosListagemListaPendencia>(`${this.API}/listar-por-kit/${kitLivroId}`,{ params });
   }
+
+  listarPorLivro(livroId: number, page: number, size: number): Observable<PageDadosListagemListaPendencia> {
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+
+    return this.http.get<PageDadosListagemListaPendencia>(`${this.API}/listar-por-livro/${livroId}`,{ params });
+  }
 }

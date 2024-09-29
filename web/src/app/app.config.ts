@@ -6,7 +6,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
 import {provideAnimations} from "@angular/platform-browser/animations";
 import {MatPaginatorIntl} from "@angular/material/paginator";
-import {getPortuguesePaginatorIntl} from "./core/functions";
+import {getPortuguesePaginatorIntl} from "./utils/functions";
 
 export const appConfig: ApplicationConfig = {
   providers: [

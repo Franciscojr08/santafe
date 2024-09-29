@@ -5,6 +5,8 @@ import {PageDadosListagemLivro} from "../../interfaces/livro/pageDadosListagemLi
 import {DadosFiltragemSerie} from "../../interfaces/serie/dadosFiltragemSerie";
 import {DadosCadastroLivro} from "../../interfaces/livro/dadosCadastroLivro";
 import {DadosResponse} from "../../interfaces/dadosResponse";
+import {DadosDetalhamentoLivro} from "../../interfaces/livro/dadosDetalhamentoLivro";
+import {DadosAtualizacaoLivro} from "../../interfaces/livro/dadosAtualizacaoLivro";
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +53,18 @@ export class LivroService {
 
   deletar(id: number): Observable<DadosResponse> {
     return this.http.delete<DadosResponse>(`${this.API}/${id}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
+  detalhar(id: string): Observable<DadosDetalhamentoLivro> {
+    return this.http.get<DadosDetalhamentoLivro>(`${this.API}/${id}`);
+  }
+
+  atualizar(dadosAtualizacao: DadosAtualizacaoLivro): Observable<DadosResponse> {
+    return this.http.put<DadosResponse>(this.API,dadosAtualizacao).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })

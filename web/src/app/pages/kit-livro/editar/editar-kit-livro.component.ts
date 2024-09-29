@@ -11,7 +11,7 @@ import {MenuNavComponent} from "../../../components/menu-nav/menu-nav.component"
 import {ActivatedRoute, Router} from "@angular/router";
 import {KitLivroService} from "../../../services/kit-livro/kit-livro.service";
 import {MessageService} from "../../../services/message/message.service";
-import {ERROR, formatDate, obterControle, SUCCESS} from "../../../core/functions";
+import {ERROR, formatDate, obterControle, SUCCESS} from "../../../utils/functions";
 import {MessagesComponent} from "../../../components/messages/messages.component";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
 import {BotaoSalvarComponent} from "../../../components/botao/botao-salvar/botao-salvar.component";

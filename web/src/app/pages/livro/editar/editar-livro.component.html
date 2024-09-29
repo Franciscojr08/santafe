@@ -1,0 +1,117 @@
+<app-menu-nav></app-menu-nav>
+<app-breadcrumb
+  [firstItem]="{ name: 'Home', link: '/home' }"
+  [items]="[
+    { name: 'Livros', link: '/livro' },
+    { name: 'Editar', link: '/livro/' },
+  ]"
+  [currentItem]="{ name: livroEditar }"
+>
+</app-breadcrumb>
+
+<app-conteudo>
+  <app-messages></app-messages>
+
+  <div>
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+      <mat-tab label="Livro">
+        <form [formGroup]="livroForm" (ngSubmit)="atualizarLivro()">
+          <div class="linha_dados_juntos">
+            <div class="div-content" style="width: 30%">
+              <label for="nome">Nome: <em>*</em></label>
+              <input type="text" name="nome" id="nome" placeholder="Nome" style="width: 84%" formControlName="nome">
+              <app-mensagem-erro [control]="obterControle(livroForm,'nome')"></app-mensagem-erro>
+            </div>
+
+            <div class="div-content">
+              <label for="identificador">ISBN: <em>*</em></label>
+              <input type="text" id="identificador" name="identificador" placeholder="Identificador" style="width: 8em"
+                     formControlName="identificador">
+              <app-mensagem-erro [control]="obterControle(livroForm,'identificador')"></app-mensagem-erro>
+            </div>
+
+            <div class="div-content">
+              <label for="usoInterno">Uso interno: <em>*</em></label>
+              <select name="usoInterno" id="usoInterno" formControlName="usoInterno" style="width: 12em" (change)="changeObrigatoriedadeSerie($event)">
+                <option style="display: none">Selecione uma opção</option>
+                <option value="1">Sim</option>
+                <option value="0">Não</option>
+              </select>
+              <app-mensagem-erro [control]="obterControle(livroForm,'usoInterno')"></app-mensagem-erro>
+            </div>
+          </div>
+
+          <div class="linha_dados_juntos">
+            <div class="div-content" style="width: 30%">
+              <label for="serieId">
+                Série: <em *ngIf="isSerieIdRequired()">*</em>
+              </label>
+              <select name="serieId" id="serieId" formControlName="serieId">
+                <option style="display: none">Selecione uma opção</option>
+                <option *ngFor="let serie of series" [value]="serie.id">{{ serie.value }}</option>
+              </select>
+            </div>
+
+            <div class="div-content" style="width: 10.3em!important;">
+              <label for="valor">Valor: <em>*</em></label>
+              <input currencyMask id="valor" name="valor" style="width: 67%" formControlName="valor">
+              <app-mensagem-erro [control]="obterControle(livroForm,'valor')"></app-mensagem-erro>
+            </div>
+
+            <div class="div-content" style="width: 17.4em">
+              <label for="quantidadeDisponivel">Disponível: <em>*</em></label>
+              <input type="number" name="quantidadeDisponivel" min="0" id="quantidadeDisponivel" placeholder="Quantidade"
+                     style="width: 60%" formControlName="quantidadeDisponivel">
+              <app-mensagem-erro [control]="obterControle(livroForm,'quantidadeDisponivel')"></app-mensagem-erro>
+            </div>
+          </div>
+
+          <div class="div-content-data">
+            <div class="div-content">
+              <label for="dataCadastro">Cadastro:</label>
+              <input type="text" class="input_data" name="dataCadastro" id="dataCadastro" formControlName="dataCadastro" readonly>
+            </div>
+
+            <div class="div-content">
+              <label for="dataAtualizacao">Atualização:</label>
+              <input type="text" class="input_data" name="dataAtualizacao" id="dataAtualizacao" formControlName="dataAtualizacao" readonly>
+            </div>
+          </div>
+
+          <div class="conteudo_botoes">
+            <app-botao-salvar
+              [disabled]="livroForm.invalid"
+              [buttonClass]="livroForm.valid ? 'button-cadastro' : 'button-cadastro-desabilitado'"
+            >
+            </app-botao-salvar>
+            <app-botao-voltar (click)="redirect()"></app-botao-voltar>
+          </div>
+        </form>
+      </mat-tab>
+      <mat-tab label="Pedidos">
+        <app-tabela-generica
+          [displayedColumns]="displayedColumnsPedidos"
+          [columnNames]="LISTAGEM_PEDIDO"
+          [dataSource]="dataSourcePedido"
+          [totalElements]="totalElementsPedido"
+          [pageSize]="pageSizePedido"
+          [pageIndex]="pageIndexPedido"
+          (pageChange)="onPageChangePedido($event)">
+        </app-tabela-generica>
+      </mat-tab>
+      <mat-tab label="Pendências">
+        <app-tabela-generica
+          [displayedColumns]="displayedColumnsPendencia"
+          [columnNames]="LISTAGEM_PENDENCIA"
+          [dataSource]="dataSourcePendencia"
+          [totalElements]="totalElementsPendencia"
+          [pageSize]="pageSizePendencia"
+          [pageIndex]="pageIndexPendencia"
+          (pageChange)="onPageChangePendencia($event)">
+        </app-tabela-generica>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</app-conteudo>
+
+<app-footer></app-footer>

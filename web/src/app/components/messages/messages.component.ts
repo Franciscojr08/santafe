@@ -9,7 +9,7 @@ import {
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {MessageService} from "../../services/message/message.service";
 import {NgClass, NgIf} from "@angular/common";
-import {ERROR, INFO, SUCCESS, WARNING} from "../../core/functions";
+import {ERROR, INFO, SUCCESS, WARNING} from "../../utils/functions";
 
 @Component({
   selector: 'app-messages',

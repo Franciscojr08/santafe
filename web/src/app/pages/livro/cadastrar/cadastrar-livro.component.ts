@@ -9,7 +9,7 @@ import {MessageService} from "../../../services/message/message.service";
 import {LivroService} from "../../../services/livro/livro.service";
 import {SerieService} from "../../../services/serie/serie.service";
 import {DadosComboSerie} from "../../../interfaces/serie/dadosComboSerie";
-import {ERROR, obterControle, SUCCESS} from "../../../core/functions";
+import {ERROR, obterControle, SUCCESS} from "../../../utils/functions";
 import {MensagemErroComponent} from "../../../components/mensagem-erro/mensagem-erro.component";
 import {CurrencyMaskModule} from "ng2-currency-mask";
 import {NgForOf, NgIf} from "@angular/common";
@@ -107,9 +107,11 @@ export class CadastrarLivroComponent {
     const SIM = 1;
     if (event.target.value == SIM) {
       serieIdControl.setValidators([Validators.required, this.validateSelectOption()]);
+      serieIdControl.enable();
     } else {
       serieIdControl.clearValidators();
       serieIdControl.setValue("Selecione uma opção");
+      serieIdControl.disable();
     }
 
     serieIdControl.updateValueAndValidity();

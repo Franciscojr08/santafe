@@ -21,7 +21,7 @@ import {Router} from "@angular/router";
 import {TurmaService} from "../../../services/turma/turma.service";
 import {SerieService} from "../../../services/serie/serie.service";
 import {MessageService} from "../../../services/message/message.service";
-import {ERROR, obterControle, selectValidator, SUCCESS} from "../../../core/functions";
+import {ERROR, obterControle, selectValidator, SUCCESS} from "../../../utils/functions";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({

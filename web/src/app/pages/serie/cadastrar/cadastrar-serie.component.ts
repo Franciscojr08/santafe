@@ -11,7 +11,7 @@ import {MenuNavComponent} from "../../../components/menu-nav/menu-nav.component"
 import {Router} from "@angular/router";
 import {MessageService} from "../../../services/message/message.service";
 import {SerieService} from "../../../services/serie/serie.service";
-import {ERROR, obterControle, SUCCESS} from "../../../core/functions";
+import {ERROR, obterControle, SUCCESS} from "../../../utils/functions";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({

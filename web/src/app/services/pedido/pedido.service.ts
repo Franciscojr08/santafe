@@ -18,4 +18,12 @@ export class PedidoService {
 
     return this.http.get<PageDadosListagemPedido>(`${this.API}/listar-por-kit/${kitLivroId}`,{ params });
   }
+
+  listarPorLivro(livroId: number, page: number, size: number): Observable<PageDadosListagemPedido> {
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+
+    return this.http.get<PageDadosListagemPedido>(`${this.API}/listar-por-livro/${livroId}`,{ params });
+  }
 }
