@@ -21,7 +21,7 @@ import {LISTAGEM_PEDIDO} from "../../../const/pedido/const-pedido";
 import {HttpErrorResponse} from "@angular/common/http";
 import {TabelaGenericaComponent} from "../../../components/tabela-generica/tabela-generica.component";
 import {ListaPendenciaService} from "../../../services/lista-pendencia/lista-pendencia.service";
-import {LISTAGEM_PENDENCIA} from "../../../const/pendencia/const-pendencia";
+import {LISTAGEM_PENDENCIA} from "../../../const/pendencia/listagem_pendencia";
 
 @Component({
   selector: 'app-editar-kit-livro',

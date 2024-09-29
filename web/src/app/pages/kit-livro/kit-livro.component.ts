@@ -5,7 +5,7 @@ import {ConteudoComponent} from "../../components/conteudo/conteudo.component";
 import {FieldsetComponent} from "../../components/fieldset/fieldset.component";
 import {KitLivroService} from "../../services/kit-livro/kit-livro.service";
 import {TabelaGenericaComponent} from "../../components/tabela-generica/tabela-generica.component";
-import {LISTAGEM_KIT_LIVRO} from "../../const/kit-livro/const-kit-livro";
+import {LISTAGEM_KIT_LIVRO} from "../../const/kit-livro/listagem_kit_livro";
 import {TotalRegistrosComponent} from "../../components/total-registros/total-registros.component";
 import {FooterComponent} from "../../components/footer/footer.component";
 import {faBroom, faFilter} from "@fortawesome/free-solid-svg-icons";

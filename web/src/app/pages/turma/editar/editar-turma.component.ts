@@ -26,7 +26,7 @@ import {MensagemErroComponent} from "../../../components/mensagem-erro/mensagem-
 import {DadosComboSerie} from "../../../interfaces/serie/dadosComboSerie";
 import {NgForOf} from "@angular/common";
 import {TabelaGenericaComponent} from "../../../components/tabela-generica/tabela-generica.component";
-import {LISTAGEM_ALUNO} from "../../../const/aluno/const-aluno";
+import {LISTAGEM_ALUNO} from "../../../const/aluno/listagem_aluno";
 import {MessagesComponent} from "../../../components/messages/messages.component";
 
 @Component({

@@ -5,7 +5,7 @@ import {ConteudoComponent} from "../../components/conteudo/conteudo.component";
 import {FieldsetComponent} from "../../components/fieldset/fieldset.component";
 import {FooterComponent} from "../../components/footer/footer.component";
 import {MessagesComponent} from "../../components/messages/messages.component";
-import {LISTAGEM_LIVRO} from "../../const/livro/const-livro";
+import {LISTAGEM_LIVRO} from "../../const/livro/lisagem_livro";
 import {TabelaGenericaComponent} from "../../components/tabela-generica/tabela-generica.component";
 import {SerieService} from "../../services/serie/serie.service";
 import {MessageService} from "../../services/message/message.service";

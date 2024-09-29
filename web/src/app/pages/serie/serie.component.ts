@@ -10,7 +10,7 @@ import {FooterComponent} from "../../components/footer/footer.component";
 import {MessagesComponent} from "../../components/messages/messages.component";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {TabelaGenericaComponent} from "../../components/tabela-generica/tabela-generica.component";
-import {LISTAGEM_SERIE} from "../../const/serie/const-serie";
+import {LISTAGEM_SERIE} from "../../const/serie/listagem_serie";
 import {SerieService} from "../../services/serie/serie.service";
 import {MessageService} from "../../services/message/message.service";
 import {NotificationService} from "../../services/notification/notification.service";

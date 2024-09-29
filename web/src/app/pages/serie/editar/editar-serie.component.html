@@ -15,13 +15,15 @@
   <div>
     <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
       <mat-tab label="Série">
-        <form class="form-cadastro-serie" [formGroup]="serieForm" (ngSubmit)="atualizarSerie()">
+        <form class="form-cadastro" [formGroup]="serieForm" (ngSubmit)="atualizarSerie()">
           <input type="hidden" name="id" id="id" formControlName="id">
 
-          <div class="div-content" style="width: 40%">
-            <label for="nome">Nome: <em>*</em></label>
-            <input type="text" name="nome" id="nome" placeholder="Nome" style="width: 88%" formControlName="nome">
-            <app-mensagem-erro [control]="obterControle(serieForm,'nome')"></app-mensagem-erro>
+          <div class="linha_dados_juntos">
+            <div class="div-content" style="width: 40%">
+              <label for="nome">Nome: <em class="em_required">*</em></label>
+              <input type="text" name="nome" id="nome" placeholder="Nome" style="width: 88%" formControlName="nome">
+              <app-mensagem-erro [control]="obterControle(serieForm,'nome')"></app-mensagem-erro>
+            </div>
           </div>
 
           <div class="div-content-data">

@@ -9,9 +9,9 @@
 </app-breadcrumb>
 
 <app-conteudo>
-  <form class="form-cadastro-serie" [formGroup]="serieForm" (ngSubmit)="cadastrarSerie()">
+  <form class="form-cadastro" [formGroup]="serieForm" (ngSubmit)="cadastrarSerie()">
     <div class="div-content" style="width: 40%">
-      <label for="nome">Nome: <em>*</em></label>
+      <label for="nome">Nome: <em class="em_required">*</em></label>
       <input type="text" name="nome" id="nome" placeholder="Nome" style="width: 88%" formControlName="nome">
       <app-mensagem-erro [control]="obterControle(serieForm,'nome')"></app-mensagem-erro>
     </div>

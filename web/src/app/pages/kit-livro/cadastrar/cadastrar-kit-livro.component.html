@@ -9,22 +9,22 @@
 </app-breadcrumb>
 
 <app-conteudo>
-  <form class="form-cadastro-kit" [formGroup]="kitLivroForm" (ngSubmit)="cadastrarKitLivro()">
+  <form class="form-cadastro" [formGroup]="kitLivroForm" (ngSubmit)="cadastrarKitLivro()">
     <div class="linha_dados_juntos">
       <div class="div-content" style="width: 40%">
-        <label for="nome">Nome: <em>*</em></label>
+        <label for="nome">Nome: <em class="em_required">*</em></label>
         <input type="text" name="nome" id="nome" placeholder="Nome" style="width: 88%" formControlName="nome">
         <app-mensagem-erro [control]="obterControle(kitLivroForm,'nome')"></app-mensagem-erro>
       </div>
 
       <div class="div-content" style="width: 15%">
-        <label for="valor">Valor: <em>*</em></label>
+        <label for="valor">Valor: <em class="em_required">*</em></label>
         <input currencyMask id="valor" name="valor" style="width: 60%" formControlName="valor">
         <app-mensagem-erro [control]="obterControle(kitLivroForm,'valor')"></app-mensagem-erro>
       </div>
 
       <div class="div-content" style="width: 18%">
-        <label for="quantidadeDisponivel">Disponível: <em>*</em></label>
+        <label for="quantidadeDisponivel">Disponível: <em class="em_required">*</em></label>
         <input type="number" name="quantidadeDisponivel" min="0" id="quantidadeDisponivel" placeholder="Quantidade" style="width: 60%" formControlName="quantidadeDisponivel">
         <app-mensagem-erro [control]="obterControle(kitLivroForm,'quantidadeDisponivel')"></app-mensagem-erro>
       </div>

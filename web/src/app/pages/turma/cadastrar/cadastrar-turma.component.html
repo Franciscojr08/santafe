@@ -11,16 +11,16 @@
 
 <app-conteudo>
 
-  <form class="form-cadastro-turma" [formGroup]="turmaForm" (ngSubmit)="cadastrarTurma()">
+  <form class="form-cadastro" [formGroup]="turmaForm" (ngSubmit)="cadastrarTurma()">
     <div class="linha_dados_juntos">
       <div class="div-content" style="width: 40%">
-        <label for="nome">Nome: <em>*</em></label>
+        <label for="nome">Nome: <em class="em_required">*</em></label>
         <input type="text" name="nome" id="nome" placeholder="Nome" style="width: 88%" formControlName="nome">
         <app-mensagem-erro [control]="obterControle(turmaForm,'nome')"></app-mensagem-erro>
       </div>
 
       <div class="div-content" style="width: 40%">
-        <label for="serieId">Série: <em>*</em></label>
+        <label for="serieId">Série: <em class="em_required">*</em></label>
         <select name="serieId" id="serieId" formControlName="serieId">
           <option style="display: none">Selecione uma opção</option>
           <option *ngFor="let serie of series" [value]="serie.id">{{ serie.value }}</option>

@@ -16,9 +16,9 @@ import {MensagemErroComponent} from "../../../components/mensagem-erro/mensagem-
 import {TabelaGenericaComponent} from "../../../components/tabela-generica/tabela-generica.component";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SerieService} from "../../../services/serie/serie.service";
-import {LISTAGEM_LIVRO} from "../../../const/livro/const-livro";
+import {LISTAGEM_LIVRO} from "../../../const/livro/lisagem_livro";
 import {LivroService} from "../../../services/livro/livro.service";
-import {LISTAGEM_TURMA} from "../../../const/turma/const-turma";
+import {LISTAGEM_TURMA} from "../../../const/turma/listagem_turma";
 import {TurmaService} from "../../../services/turma/turma.service";
 
 @Component({

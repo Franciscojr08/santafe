@@ -15,23 +15,23 @@
   <div>
     <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
       <mat-tab label="Livro">
-        <form [formGroup]="livroForm" (ngSubmit)="atualizarLivro()">
+        <form class="form-cadastro" [formGroup]="livroForm" (ngSubmit)="atualizarLivro()">
           <div class="linha_dados_juntos">
             <div class="div-content" style="width: 30%">
-              <label for="nome">Nome: <em>*</em></label>
+              <label for="nome">Nome: <em class="em_required">*</em></label>
               <input type="text" name="nome" id="nome" placeholder="Nome" style="width: 84%" formControlName="nome">
               <app-mensagem-erro [control]="obterControle(livroForm,'nome')"></app-mensagem-erro>
             </div>
 
             <div class="div-content">
-              <label for="identificador">ISBN: <em>*</em></label>
+              <label for="identificador">ISBN: <em class="em_required">*</em></label>
               <input type="text" id="identificador" name="identificador" placeholder="Identificador" style="width: 8em"
                      formControlName="identificador">
               <app-mensagem-erro [control]="obterControle(livroForm,'identificador')"></app-mensagem-erro>
             </div>
 
             <div class="div-content">
-              <label for="usoInterno">Uso interno: <em>*</em></label>
+              <label for="usoInterno">Uso interno: <em class="em_required">*</em></label>
               <select name="usoInterno" id="usoInterno" formControlName="usoInterno" style="width: 12em" (change)="changeObrigatoriedadeSerie($event)">
                 <option style="display: none">Selecione uma opção</option>
                 <option value="1">Sim</option>
@@ -53,13 +53,13 @@
             </div>
 
             <div class="div-content" style="width: 10.3em!important;">
-              <label for="valor">Valor: <em>*</em></label>
+              <label for="valor">Valor: <em class="em_required">*</em></label>
               <input currencyMask id="valor" name="valor" style="width: 67%" formControlName="valor">
               <app-mensagem-erro [control]="obterControle(livroForm,'valor')"></app-mensagem-erro>
             </div>
 
             <div class="div-content" style="width: 17.4em">
-              <label for="quantidadeDisponivel">Disponível: <em>*</em></label>
+              <label for="quantidadeDisponivel">Disponível: <em class="em_required">*</em></label>
               <input type="number" name="quantidadeDisponivel" min="0" id="quantidadeDisponivel" placeholder="Quantidade"
                      style="width: 60%" formControlName="quantidadeDisponivel">
               <app-mensagem-erro [control]="obterControle(livroForm,'quantidadeDisponivel')"></app-mensagem-erro>

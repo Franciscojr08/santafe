@@ -12,7 +12,7 @@ import {MessageService} from "../../../services/message/message.service";
 import {AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators} from "@angular/forms";
 import {ERROR, formatDate, obterControle, SUCCESS} from '../../../utils/functions';
 import {LivroService} from "../../../services/livro/livro.service";
-import { LISTAGEM_PENDENCIA } from '../../../const/pendencia/const-pendencia';
+import { LISTAGEM_PENDENCIA } from '../../../const/pendencia/listagem_pendencia';
 import { LISTAGEM_PEDIDO } from '../../../const/pedido/const-pedido';
 import {TabelaGenericaComponent} from "../../../components/tabela-generica/tabela-generica.component";
 import {HttpErrorResponse} from "@angular/common/http";

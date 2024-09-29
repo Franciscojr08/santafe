@@ -5,7 +5,7 @@ import {ConteudoComponent} from "../../components/conteudo/conteudo.component";
 import {MessagesComponent} from "../../components/messages/messages.component";
 import {FooterComponent} from "../../components/footer/footer.component";
 import {FieldsetComponent} from "../../components/fieldset/fieldset.component";
-import {LISTAGEM_TURMA} from "../../const/turma/const-turma";
+import {LISTAGEM_TURMA} from "../../const/turma/listagem_turma";
 import {TurmaService} from "../../services/turma/turma.service";
 import {MessageService} from "../../services/message/message.service";
 import {TabelaGenericaComponent} from "../../components/tabela-generica/tabela-generica.component";
