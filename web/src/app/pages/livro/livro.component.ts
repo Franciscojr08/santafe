@@ -112,7 +112,7 @@ export class LivroComponent {
     this.listar(event.pageIndex, event.pageSize);
   }
 
-  public listar(pageIndex = 0, pageSize = 10) {
+  private listar(pageIndex = 0, pageSize = 10) {
     this.livroService.listar(pageIndex, pageSize).subscribe( {
       next: (response) => {
         this.dataSource = response.content;

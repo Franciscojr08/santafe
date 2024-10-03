@@ -16,6 +16,10 @@
           {{ formatarValor(element[column]) }}
         </ng-container>
 
+        <ng-container *ngSwitchCase="column.includes('cpf')">
+          {{ formatarCPF(element[column]) }}
+        </ng-container>
+
         <ng-container *ngSwitchDefault>
           {{ element[column] }}
         </ng-container>

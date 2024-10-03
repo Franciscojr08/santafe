@@ -120,6 +120,14 @@ export class TabelaGenericaComponent implements OnInit {
     return `${day}/${month}/${year}`;
   }
 
+  formatarCPF(cpf: string): string{
+    cpf=cpf.replace(/\D/g,"")
+    cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+    cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+    cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
+    return cpf
+  }
+
   protected readonly faBroom = faBroom;
   protected readonly console = console;
 }
