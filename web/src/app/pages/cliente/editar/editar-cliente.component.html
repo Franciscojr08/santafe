@@ -1,0 +1,149 @@
+<app-menu-nav></app-menu-nav>
+<app-breadcrumb
+  [firstItem]="{ name: 'Home', link: '/home' }"
+  [items]="[
+    { name: 'Clientes', link: '/cliente' },
+    { name: 'Editar', link: '/cliente/' },
+  ]"
+  [currentItem]="{ name: clienteEditar }"
+>
+</app-breadcrumb>
+
+<app-conteudo>
+  <app-messages></app-messages>
+
+  <div>
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+      <mat-tab label="Cliente">
+        <form class="form-cadastro" [formGroup]="clienteForm" (ngSubmit)="atualizarCliente()">
+          <app-fieldset
+            legend='Dados Pessoais'
+            style='font-size: 14px!important;'
+          >
+            <div class="linha_dados_juntos">
+              <div class="div-content">
+                <label for="nome">Nome: <em class="em_required">*</em></label>
+                <input type="text" id="nome" name="nome" placeholder="Nome" style="width: 19em" formControlName="nome">
+                <app-mensagem-erro [control]="obterControle(clienteForm,'nome')"></app-mensagem-erro>
+              </div>
+
+              <div class="div-content">
+                <label for="cpf">CPF: <em class="em_required">*</em></label>
+                <input mask="000.000.000-00" type="text" id="cpf" name="cpf" placeholder="xxx.xxx.xxx-xx" style="width: 8.5em; text-align: right" formControlName="cpf">
+                <app-mensagem-erro [control]="obterControle(clienteForm,'cpf')"></app-mensagem-erro>
+              </div>
+
+              <div class="div-content">
+                <label for="email">E-mail: <em class="em_required">*</em></label>
+                <input type="email" id="email" name="email" placeholder="E-mail" style="width: 16em" formControlName="email">
+                <app-mensagem-erro [control]="obterControle(clienteForm,'email')"></app-mensagem-erro>
+              </div>
+
+              <div class="div-content">
+                <label for="telefone">Telefone: <em class="em_required">*</em></label>
+                <input mask="(00) 00000-0000" type="text" id="telefone" name="telefone" placeholder="(xx) xxxxx-xxxx)" style="width: 8.5em; text-align: right" formControlName="telefone">
+                <app-mensagem-erro [control]="obterControle(clienteForm,'telefone')"></app-mensagem-erro>
+              </div>
+
+              <div class="div-content">
+                <label for="responsavelAluno">Responsável: <em class="em_required">*</em></label>
+                <select name="responsavelAluno" id="responsavelAluno" formControlName="responsavelAluno" style="width: 12em!important;">
+                  <option style="display: none">Selecione uma opção</option>
+                  <option value="1">Sim</option>
+                  <option value="0">Não</option>
+                </select>
+              </div>
+            </div>
+          </app-fieldset>
+
+          <app-fieldset
+            legend='Endereço'
+            style='font-size: 14px!important;'
+          >
+            <div class="linha_dados_juntos" formGroupName="endereco">
+              <div class="div-content">
+                <label for="cep">CEP: <em class="em_required">*</em></label>
+                <input mask="00000-000" type="text" id="cep" name="cep" placeholder="xxxxx-xxx" style="width: 6em; text-align: right" formControlName="cep" (change)="consultarCEP($event)">
+                <app-mensagem-erro [control]="obterControleEndereco(clienteForm, 'endereco', 'cep')"></app-mensagem-erro>
+              </div>
+
+              <div class="div-content">
+                <label for="logradouro">Logradouro: <em class="em_required">*</em></label>
+                <input type="text" id="logradouro" name="logradouro" placeholder="Nome" style="width: 20em" formControlName="logradouro">
+                <app-mensagem-erro [control]="obterControleEndereco(clienteForm, 'endereco','logradouro')"></app-mensagem-erro>
+              </div>
+
+              <div class="div-content">
+                <label for="bairro">Bairro: <em class="em_required">*</em></label>
+                <input type="text" id="bairro" name="bairro" placeholder="Bairro" style="width: 14em" formControlName="bairro">
+                <app-mensagem-erro [control]="obterControleEndereco(clienteForm, 'endereco','bairro')"></app-mensagem-erro>
+              </div>
+
+              <div class="div-content">
+                <label for="cidade">Cidade: <em class="em_required">*</em></label>
+                <input type="text" id="cidade" name="cidade" placeholder="Cidade" style="width: 12.5em" formControlName="cidade">
+                <app-mensagem-erro [control]="obterControleEndereco(clienteForm, 'endereco','cidade')"></app-mensagem-erro>
+              </div>
+
+              <div class="div-content">
+                <label for="estado">Estado: <em class="em_required">*</em></label>
+                <input type="text" id="estado" name="estado" placeholder="Estado" style="width: 12.5em" formControlName="estado">
+                <app-mensagem-erro [control]="obterControleEndereco(clienteForm, 'endereco','estado')"></app-mensagem-erro>
+              </div>
+            </div>
+          </app-fieldset>
+
+          <app-fieldset
+            legend='Informações'
+            style='font-size: 14px!important;'
+          >
+            <div class="div-content-data">
+              <div class="div-content">
+                <label for="dataCadastro">Cadastro:</label>
+                <input type="text" class="input_data" name="dataCadastro" id="dataCadastro" formControlName="dataCadastro" readonly>
+              </div>
+
+              <div class="div-content">
+                <label for="dataAtualizacao">Atualização:</label>
+                <input type="text" class="input_data" name="dataAtualizacao" id="dataAtualizacao" formControlName="dataAtualizacao" readonly>
+              </div>
+            </div>
+          </app-fieldset>
+
+          <div class="conteudo_botoes">
+            <app-botao-salvar
+              [disabled]="clienteForm.invalid"
+              [buttonClass]="clienteForm.valid ? 'button-cadastro' : 'button-cadastro-desabilitado'"
+            >
+            </app-botao-salvar>
+            <app-botao-voltar (click)="redirect()"></app-botao-voltar>
+          </div>
+        </form>
+      </mat-tab>
+      <mat-tab label="Alunos">
+        <app-tabela-generica
+          [displayedColumns]="displayedColumnsAluno"
+          [columnNames]="LISTAGEM_ALUNO"
+          [dataSource]="dataSourceAluno"
+          [totalElements]="totalElementsAluno"
+          [pageSize]="pageSizeAluno"
+          [pageIndex]="pageIndexAluno"
+          (pageChange)="onPageChangeAluno($event)">
+        </app-tabela-generica>
+      </mat-tab>
+      <mat-tab label="Pedidos">
+        <app-tabela-generica
+          [displayedColumns]="displayedColumnsPedidos"
+          [columnNames]="LISTAGEM_PEDIDO"
+          [dataSource]="dataSourcePedido"
+          [totalElements]="totalElementsPedido"
+          [pageSize]="pageSizePedido"
+          [pageIndex]="pageIndexPedido"
+          (pageChange)="onPageChangePedido($event)">
+        </app-tabela-generica>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</app-conteudo>
+
+<app-footer></app-footer>

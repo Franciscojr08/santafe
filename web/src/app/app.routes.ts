@@ -17,12 +17,15 @@ import {EditarTurmaComponent} from "./pages/turma/editar/editar-turma.component"
 import {CadastrarLivroComponent} from "./pages/livro/cadastrar/cadastrar-livro.component";
 import {EditarLivroComponent} from "./pages/livro/editar/editar-livro.component";
 import {CadastrarClienteComponent} from "./pages/cliente/cadastrar/cadastrar-cliente.component";
+import {EditarClienteComponent} from "./pages/cliente/editar/editar-cliente.component";
 
 export const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "cliente", component: ClienteComponent },
   { path: "cliente/cadastrar", component: CadastrarClienteComponent },
+  { path: "cliente/editar/:id", component: EditarClienteComponent },
+  { path: "cliente/editar/", redirectTo: "/cliente" },
   { path: "aluno", component: AlunoComponent },
   { path: "pedido", component: PedidoComponent },
   { path: "pendencia", component: PendenciaComponent },

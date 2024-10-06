@@ -18,4 +18,12 @@ export class AlunoService {
 
     return this.http.get<PageDadosListagemAluno>(`${this.API}/listar-por-turma/${turmaId}`,{ params });
   }
+
+  listarPorCliente(clienteId: number, page: number, size: number): Observable<PageDadosListagemAluno> {
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+
+    return this.http.get<PageDadosListagemAluno>(`${this.API}/listar-por-cliente/${clienteId}`,{ params });
+  }
 }

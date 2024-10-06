@@ -6,6 +6,8 @@ import {DadosFiltragemCliente} from "../../interfaces/cliente/dadosFiltragemClie
 import {DadosFiltragemSerie} from "../../interfaces/serie/dadosFiltragemSerie";
 import {DadosResponse} from "../../interfaces/dadosResponse";
 import {DadosCadastroCliente} from "../../interfaces/cliente/dadosCadastroCliente";
+import {DadosDetalhamentoCliente} from "../../interfaces/cliente/dadosDetalhamentoCliente";
+import {DadosAtualizacaoCliente} from "../../interfaces/cliente/dadosAtualizacaoCliente";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class ClienteService {
 
   constructor(private http: HttpClient) {}
 
-  public listar(page: number, size: number): Observable<PageDadosListagemCliente> {
+  listar(page: number, size: number): Observable<PageDadosListagemCliente> {
     return this.http.get<PageDadosListagemCliente>(`${this.API}?page=${page}&size=${size}`)
   }
 
@@ -36,6 +38,18 @@ export class ClienteService {
 
   cadastrar(dadosCadastro: DadosCadastroCliente): Observable<DadosResponse> {
     return this.http.post<DadosResponse>(this.API,dadosCadastro).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
+  detalhar(id: string): Observable<DadosDetalhamentoCliente> {
+    return this.http.get<DadosDetalhamentoCliente>(`${this.API}/${id}`);
+  }
+
+  atualizar(dadosAtualizacao: DadosAtualizacaoCliente): Observable<DadosResponse> {
+    return this.http.put<DadosResponse>(this.API,dadosAtualizacao).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })

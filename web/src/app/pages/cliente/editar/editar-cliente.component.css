@@ -1,0 +1,9 @@
+.div-content {
+  margin-right: 0.5em!important;
+}
+
+.form-cadastro {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
