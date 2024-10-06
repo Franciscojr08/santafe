@@ -1,0 +1,10 @@
+.div-content {
+  margin-right: 0.5em!important;
+}
+
+.form-cadastro {
+  padding: 0!important;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
