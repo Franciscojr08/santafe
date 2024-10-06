@@ -55,4 +55,12 @@ export class ClienteService {
       })
     );
   }
+
+  deletar(id: number): Observable<DadosResponse> {
+    return this.http.delete<DadosResponse>(`${this.API}/${id}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  }
 }

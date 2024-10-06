@@ -12,12 +12,13 @@ import {MessageService} from "../../services/message/message.service";
 import {NotificationService} from "../../services/notification/notification.service";
 import {BotaoCadastrarComponent} from "../../components/botao/botao-cadastrar/botao-cadastrar.component";
 import {TabelaGenericaComponent} from "../../components/tabela-generica/tabela-generica.component";
-import {HttpErrorResponse} from "@angular/common/http";
-import {ERROR, filtrosPreenchidos} from "../../utils/functions";
+import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
+import {ERROR, filtrosPreenchidos, SUCCESS, WARNING} from "../../utils/functions";
 import {faBroom, faFilter} from "@fortawesome/free-solid-svg-icons";
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {NgClass} from "@angular/common";
 import {NgxMaskDirective} from "ngx-mask";
+import {DadosExclusao} from "../../interfaces/dadosExclusao";
 
 @Component({
   selector: 'app-cliente',
@@ -70,11 +71,18 @@ export class ClienteComponent {
     private injetor: Injector,
     ) {
     this.listar();
+
+    this.notificationService.deleteConfirmed$.subscribe((dadosExclusao: DadosExclusao) => {
+      if (dadosExclusao.component == this.getSeletorComponent()) {
+        this.deletarCliente(dadosExclusao.id);
+      }
+    });
   }
 
   ngOnInit() {
     this.inicializarFormulario();
   }
+
   inicializarFormulario() {
     this.clienteForm = new FormGroup({
       nome: new FormControl(""),
@@ -138,5 +146,23 @@ export class ClienteComponent {
     this.clienteForm.reset();
     this.clienteForm.get("responsavel")?.setValue("Selecione uma opção");
     this.listar();
+  }
+
+  private deletarCliente(id: number) {
+    this.clienteService.deletar(id).subscribe( {
+      next: (dadosResponse) => {
+        if (dadosResponse.status == HttpStatusCode.Ok) {
+          this.listar();
+          this.messageService.add("Cliente deletado com sucesso!",SUCCESS);
+          return;
+        }
+
+        this.messageService.add("Ocorreu um erro ao tentar excluir o cliente. Tente novamente!",WARNING);
+      },
+      error: (error: HttpErrorResponse) => {
+        let dadosErros = error.error;
+        this.messageService.add(dadosErros.mensagem,ERROR);
+      }
+    });
   }
 }
