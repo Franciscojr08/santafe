@@ -16,13 +16,13 @@ import {
 } from "@angular/forms";
 import {MensagemErroComponent} from "../../../components/mensagem-erro/mensagem-erro.component";
 import {NgForOf} from "@angular/common";
-import {DadosComboSerie} from "../../../interfaces/serie/dadosComboSerie";
 import {Router} from "@angular/router";
 import {TurmaService} from "../../../services/turma/turma.service";
 import {SerieService} from "../../../services/serie/serie.service";
 import {MessageService} from "../../../services/message/message.service";
 import {ERROR, obterControle, selectValidator, SUCCESS} from "../../../utils/functions";
 import {HttpErrorResponse} from "@angular/common/http";
+import {DadosCombo} from "../../../interfaces/dadosCombo";
 
 @Component({
   selector: 'app-cadastrar-turma',
@@ -45,7 +45,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 export class CadastrarTurmaComponent {
   protected readonly obterControle = obterControle;
   turmaForm!: FormGroup;
-  series!: DadosComboSerie[]
+  series!: DadosCombo[]
 
   constructor(
     private router: Router,

@@ -8,7 +8,6 @@ import {Router} from "@angular/router";
 import {MessageService} from "../../../services/message/message.service";
 import {LivroService} from "../../../services/livro/livro.service";
 import {SerieService} from "../../../services/serie/serie.service";
-import {DadosComboSerie} from "../../../interfaces/serie/dadosComboSerie";
 import {ERROR, obterControle, SUCCESS} from "../../../utils/functions";
 import {MensagemErroComponent} from "../../../components/mensagem-erro/mensagem-erro.component";
 import {CurrencyMaskModule} from "ng2-currency-mask";
@@ -16,6 +15,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {BotaoCancelarComponent} from "../../../components/botao/botao-cancelar/botao-cancelar.component";
 import {BotaoEnviarComponent} from "../../../components/botao/botao-enviar/botao-enviar.component";
 import {HttpErrorResponse} from "@angular/common/http";
+import {DadosCombo} from "../../../interfaces/dadosCombo";
 
 @Component({
   selector: 'app-cadastrar',
@@ -39,7 +39,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 export class CadastrarLivroComponent {
   protected readonly obterControle = obterControle;
   livroForm!: FormGroup;
-  series!: DadosComboSerie[];
+  series!: DadosCombo[];
 
   constructor(
     private router: Router,

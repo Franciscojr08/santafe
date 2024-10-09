@@ -8,6 +8,7 @@ import {DadosResponse} from "../../interfaces/dadosResponse";
 import {DadosCadastroCliente} from "../../interfaces/cliente/dadosCadastroCliente";
 import {DadosDetalhamentoCliente} from "../../interfaces/cliente/dadosDetalhamentoCliente";
 import {DadosAtualizacaoCliente} from "../../interfaces/cliente/dadosAtualizacaoCliente";
+import {DadosCombo} from "../../interfaces/dadosCombo";
 
 @Injectable({
   providedIn: 'root'
@@ -62,5 +63,9 @@ export class ClienteService {
         return throwError(() => error);
       })
     );
+  }
+
+  carregarCombo(): Observable<DadosCombo[]> {
+    return this.http.get<DadosCombo[]>(`${this.API}/combo`);
   }
 }

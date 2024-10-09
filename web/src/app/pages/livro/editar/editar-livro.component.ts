@@ -20,9 +20,9 @@ import {MensagemErroComponent} from "../../../components/mensagem-erro/mensagem-
 import {CurrencyMaskModule} from "ng2-currency-mask";
 import {NgForOf, NgIf} from "@angular/common";
 import {SerieService} from "../../../services/serie/serie.service";
-import {DadosComboSerie} from "../../../interfaces/serie/dadosComboSerie";
 import {BotaoSalvarComponent} from "../../../components/botao/botao-salvar/botao-salvar.component";
 import {BotaoVoltarComponent} from "../../../components/botao/botao-voltar/botao-voltar.component";
+import {DadosCombo} from "../../../interfaces/dadosCombo";
 
 @Component({
   selector: 'app-editar-livro',
@@ -55,7 +55,7 @@ export class EditarLivroComponent {
   livroForm!: FormGroup
   livroEditar: string = ""
   livroId!: number
-  series!: DadosComboSerie[];
+  series!: DadosCombo[];
   protected readonly obterControle = obterControle;
 
   constructor(

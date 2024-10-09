@@ -7,6 +7,7 @@ import {DadosCadastroTurma} from "../../interfaces/turma/dadosCadastroTurma";
 import {DadosResponse} from "../../interfaces/dadosResponse";
 import {DadosDetalhamentoTurma} from "../../interfaces/turma/dadosDetalhamentoTurma";
 import {DadosAtualizacaoTurma} from "../../interfaces/turma/dadosAtualizacaoTurma";
+import {DadosCombo} from "../../interfaces/dadosCombo";
 
 @Injectable({
   providedIn: 'root'
@@ -70,5 +71,9 @@ export class TurmaService {
         return throwError(() => error);
       })
     );
+  }
+
+  combo(): Observable<DadosCombo[]> {
+    return this.http.get<DadosCombo[]>(`${this.API}/combo`);
   }
 }

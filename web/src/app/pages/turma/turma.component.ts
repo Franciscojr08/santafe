@@ -15,11 +15,11 @@ import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgClass, NgForOf} from "@angular/common";
 import {SerieService} from "../../services/serie/serie.service";
-import {DadosComboSerie} from "../../interfaces/serie/dadosComboSerie";
 import {NotificationService} from "../../services/notification/notification.service";
 import {DadosExclusao} from "../../interfaces/dadosExclusao";
 import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {ERROR, filtrosPreenchidos, SUCCESS, WARNING} from "../../utils/functions";
+import {DadosCombo} from "../../interfaces/dadosCombo";
 
 @Component({
   selector: 'app-turma',
@@ -61,7 +61,7 @@ export class TurmaComponent {
   pageSizeTurma: number = 10;
   pageIndexTurma: number = 0;
   turmaForm!: FormGroup;
-  series!: DadosComboSerie[]
+  series!: DadosCombo[]
 
   constructor(
     private turmaService: TurmaService,

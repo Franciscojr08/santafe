@@ -23,11 +23,11 @@ import {MatTab, MatTabGroup} from "@angular/material/tabs";
 import {BotaoSalvarComponent} from "../../../components/botao/botao-salvar/botao-salvar.component";
 import {BotaoVoltarComponent} from "../../../components/botao/botao-voltar/botao-voltar.component";
 import {MensagemErroComponent} from "../../../components/mensagem-erro/mensagem-erro.component";
-import {DadosComboSerie} from "../../../interfaces/serie/dadosComboSerie";
 import {NgForOf} from "@angular/common";
 import {TabelaGenericaComponent} from "../../../components/tabela-generica/tabela-generica.component";
 import {LISTAGEM_ALUNO} from "../../../const/aluno/listagem_aluno";
 import {MessagesComponent} from "../../../components/messages/messages.component";
+import {DadosCombo} from "../../../interfaces/dadosCombo";
 
 @Component({
   selector: 'app-editar-turma',
@@ -59,7 +59,7 @@ export class EditarTurmaComponent {
   turmaEditar!: string;
   turmaForm!: FormGroup;
   turmaId!: number;
-  series!: DadosComboSerie[];
+  series!: DadosCombo[];
   protected readonly obterControle = obterControle;
 
   constructor(

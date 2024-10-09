@@ -7,3 +7,92 @@
   [currentItem]="{ name: 'Consultar' }"
 >
 </app-breadcrumb>
+
+<app-conteudo>
+  <app-messages></app-messages>
+
+  <app-fieldset
+    legend='filtros'>
+    <form class="fieldset-content" [formGroup]="alunoForm">
+      <div class="filtros">
+        <div class="filtro">
+          <div class="div-content">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="Nome" style="width: 20em" formControlName="nome">
+          </div>
+
+          <div class="div-content">
+            <label for="matricula">Matrícula:</label>
+            <input type="text" id="matricula" name="matricula" placeholder="Matrícula" style="width: 10.5em" formControlName="matricula">
+          </div>
+
+          <div class="div-content">
+            <label for="cpf">CPF:</label>
+            <input mask="000.000.000-00" type="text" id="cpf" name="cpf" placeholder="xxx.xxx.xxx-xx" style="width: 8em; text-align: right" formControlName="cpf">
+          </div>
+        </div>
+
+        <div class="filtro">
+          <div class="div-content">
+            <label for="clienteId">Cliente:</label>
+            <select name="clienteId" id="clienteId" formControlName="clienteId">
+              <option style="display: none">Selecione uma opção</option>
+              <option *ngFor="let cliente of clientes" [value]="cliente.id">{{ cliente.value }}</option>
+            </select>
+          </div>
+
+          <div class="div-content">
+            <label for="clienteId">Turma:</label>
+            <select name="turmaId" id="turmaId" formControlName="turmaId" style="width: 12.15em!important;">
+              <option style="display: none">Selecione uma opção</option>
+              <option *ngFor="let turma of turmas" [value]="turma.id">{{ turma.value }}</option>
+            </select>
+          </div>
+
+          <div class="div-content">
+            <label for="rg">RG:</label>
+            <input type="text" id="rg" name="rg" placeholder="RG" style="width: 8.7em" formControlName="rg">
+          </div>
+        </div>
+      </div>
+
+      <div class="botoes">
+        <button
+          class="button-filter"
+          type="submit"
+          [disabled]="!filtrosPreenchidos(alunoForm)"
+          [ngClass]="filtrosPreenchidos(alunoForm) ? 'button-filter' : 'button-filter-desabilitado'"
+          (click)="filtrar()"
+        >
+          <fa-icon [icon]="faFilter"></fa-icon>
+          Filtrar
+        </button>
+        <button
+          class="button-clear"
+          type="button"
+          (click)="limparFiltros()"
+        >
+          <fa-icon [icon]="faBroom"></fa-icon>
+          Limpar
+        </button>
+      </div>
+    </form>
+  </app-fieldset>
+
+  <app-botao-cadastrar link="/aluno/cadastrar"></app-botao-cadastrar>
+
+  <app-tabela-generica
+    [displayedColumns]="displayedColumnsAluno"
+    [columnNames]="LISTAGEM_ALUNO"
+    [dataSource]="dataSourceAluno"
+    [totalElements]="totalElementsAluno"
+    [pageSize]="pageSizeAluno"
+    [pageIndex]="pageIndexAluno"
+    (pageChange)="onPageChangeAluno($event)"
+    editPath="cliente/editar"
+    [component]="getSeletorComponent()"
+  >
+  </app-tabela-generica>
+</app-conteudo>
+
+<app-footer></app-footer>

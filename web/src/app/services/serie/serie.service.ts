@@ -7,7 +7,7 @@ import {DadosResponse} from "../../interfaces/dadosResponse";
 import {DadosCadastroSerie} from "../../interfaces/serie/dadosCadastroSerie";
 import {DadosDetalhamentoSerie} from "../../interfaces/serie/dadosDetalhamentoSerie";
 import {DadosAtualizacaoSerie} from "../../interfaces/serie/dadosAtualizacaoSerie";
-import {DadosComboSerie} from "../../interfaces/serie/dadosComboSerie";
+import {DadosCombo} from "../../interfaces/dadosCombo";
 
 @Injectable({
   providedIn: 'root'
@@ -64,7 +64,7 @@ export class SerieService {
     );
   }
 
-  carregarCombo(): Observable<DadosComboSerie[]> {
-    return this.http.get<DadosComboSerie[]>(`${this.API}/combo`);
+  carregarCombo(): Observable<DadosCombo[]> {
+    return this.http.get<DadosCombo[]>(`${this.API}/combo`);
   }
 }

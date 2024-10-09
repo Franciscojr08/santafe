@@ -13,7 +13,6 @@ import {NotificationService} from "../../services/notification/notification.serv
 import {LivroService} from "../../services/livro/livro.service";
 import {BotaoCadastrarComponent} from "../../components/botao/botao-cadastrar/botao-cadastrar.component";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {DadosComboSerie} from "../../interfaces/serie/dadosComboSerie";
 import {NgClass, NgForOf} from "@angular/common";
 import {faBroom, faFilter} from "@fortawesome/free-solid-svg-icons";
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
@@ -21,6 +20,7 @@ import {CurrencyMaskModule} from "ng2-currency-mask";
 import {ERROR, filtrosPreenchidos, SUCCESS, WARNING} from "../../utils/functions";
 import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {DadosExclusao} from "../../interfaces/dadosExclusao";
+import {DadosCombo} from "../../interfaces/dadosCombo";
 
 @Component({
   selector: 'app-livro',
@@ -68,7 +68,7 @@ export class LivroComponent {
   pageIndex: number = 0;
 
   livroForm!: FormGroup;
-  series!: DadosComboSerie[];
+  series!: DadosCombo[];
 
   constructor(
     private injetor: Injector,

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
+import {catchError, Observable, throwError} from "rxjs";
 import {PageDadosListagemAluno} from "../../interfaces/aluno/pageDadosListagemAluno";
+import {DadosFiltragemAluno} from "../../interfaces/aluno/dadosFiltragemAluno";
+import {DadosResponse} from "../../interfaces/dadosResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +27,32 @@ export class AlunoService {
       .set('size', size.toString());
 
     return this.http.get<PageDadosListagemAluno>(`${this.API}/listar-por-cliente/${clienteId}`,{ params });
+  }
+
+  listar(page: number, size: number): Observable<PageDadosListagemAluno> {
+    return this.http.get<PageDadosListagemAluno>(`${this.API}?page=${page}&size=${size}`)
+  }
+
+  filtrar(page: number, size: number, filtros: DadosFiltragemAluno): Observable<PageDadosListagemAluno> {
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+
+    Object.keys(filtros).forEach(key => {
+      const value = filtros[key as keyof DadosFiltragemAluno];
+      if (value !== null && value !== undefined && value !== '') {
+        params = params.set(key, value.toString());
+      }
+    });
+
+    return this.http.get<PageDadosListagemAluno>(`${this.API}/filtrar`, { params });
+  }
+
+  deletar(id: number): Observable<DadosResponse> {
+    return this.http.delete<DadosResponse>(`${this.API}/${id}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
   }
 }

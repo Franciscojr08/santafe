@@ -70,7 +70,6 @@ export class ClienteComponent {
     private notificationService: NotificationService,
     private injetor: Injector,
     ) {
-    this.listar();
 
     this.notificationService.deleteConfirmed$.subscribe((dadosExclusao: DadosExclusao) => {
       if (dadosExclusao.component == this.getSeletorComponent()) {
@@ -80,6 +79,7 @@ export class ClienteComponent {
   }
 
   ngOnInit() {
+    this.listar();
     this.inicializarFormulario();
   }
 
