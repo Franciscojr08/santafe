@@ -4,6 +4,7 @@ import {catchError, Observable, throwError} from "rxjs";
 import {PageDadosListagemAluno} from "../../interfaces/aluno/pageDadosListagemAluno";
 import {DadosFiltragemAluno} from "../../interfaces/aluno/dadosFiltragemAluno";
 import {DadosResponse} from "../../interfaces/dadosResponse";
+import {DadosCadastroAluno} from "../../interfaces/aluno/dadosCadastroAluno";
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,14 @@ export class AlunoService {
     });
 
     return this.http.get<PageDadosListagemAluno>(`${this.API}/filtrar`, { params });
+  }
+
+  cadastrar(dadosCadastro: DadosCadastroAluno): Observable<DadosResponse> {
+    return this.http.post<DadosResponse>(this.API,dadosCadastro).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
   }
 
   deletar(id: number): Observable<DadosResponse> {

@@ -1,0 +1,70 @@
+<app-menu-nav></app-menu-nav>
+<app-breadcrumb
+  [firstItem]="{ name: 'Home', link: '/home' }"
+  [items]="[
+    { name: 'Alunos', link: '/aluno' },
+  ]"
+  [currentItem]="{ name: 'Cadastrar' }"
+>
+</app-breadcrumb>
+
+<app-conteudo>
+  <app-messages></app-messages>
+
+  <form class="form-cadastro" [formGroup]="alunoForm" (ngSubmit)="cadastrarAluno()">
+    <div class="linha_dados_juntos">
+      <div class="div-content">
+        <label for="nome">Nome: <em class="em_required">*</em></label>
+        <input type="text" id="nome" name="nome" placeholder="Nome" style="width: 20em" formControlName="nome">
+        <app-mensagem-erro [control]="obterControle(alunoForm,'nome')"></app-mensagem-erro>
+      </div>
+
+      <div class="div-content">
+        <label for="matricula">Matrícula: <em class="em_required">*</em></label>
+        <input type="text" id="matricula" name="matricula" placeholder="Matrícula" style="width: 10.5em" formControlName="matricula">
+        <app-mensagem-erro [control]="obterControle(alunoForm,'matricula')"></app-mensagem-erro>
+      </div>
+
+      <div class="div-content">
+        <label for="cpf">CPF: <em class="em_required">*</em></label>
+        <input mask="000.000.000-00" type="text" id="cpf" name="cpf" placeholder="xxx.xxx.xxx-xx" style="width: 8em; text-align: right" formControlName="cpf">
+        <app-mensagem-erro [control]="obterControle(alunoForm,'cpf')"></app-mensagem-erro>
+      </div>
+    </div>
+
+    <div class="linha_dados_juntos">
+      <div class="div-content">
+        <label for="clienteResponsavelId">Cliente: <em class="em_required">*</em></label>
+        <select name="clienteResponsavelId" id="clienteResponsavelId" formControlName="clienteResponsavelId">
+          <option style="display: none">Selecione uma opção</option>
+          <option *ngFor="let cliente of clientes" [value]="cliente.id">{{ cliente.value }}</option>
+        </select>
+      </div>
+
+      <div class="div-content">
+        <label for="turmaId">Turma: <em class="em_required">*</em></label>
+        <select name="turmaId" id="turmaId" formControlName="turmaId" style="width: 12.15em!important;">
+          <option style="display: none">Selecione uma opção</option>
+          <option *ngFor="let turma of turmas" [value]="turma.id">{{ turma.value }}</option>
+        </select>
+      </div>
+
+      <div class="div-content">
+        <label for="rg">RG: <em class="em_required">*</em></label>
+        <input type="text" id="rg" name="rg" placeholder="RG" style="width: 8.7em" formControlName="rg">
+        <app-mensagem-erro [control]="obterControle(alunoForm,'rg')"></app-mensagem-erro>
+      </div>
+    </div>
+
+    <div class="conteudo_botoes">
+      <app-botao-enviar
+        [disabled]="alunoForm.invalid"
+        [buttonClass]="alunoForm.valid ? 'button-cadastro' : 'button-cadastro-desabilitado'"
+      >
+      </app-botao-enviar>
+      <app-botao-cancelar (click)="limparFormularioERedirecionar()"></app-botao-cancelar>
+    </div>
+  </form>
+</app-conteudo>
+
+<app-footer></app-footer>

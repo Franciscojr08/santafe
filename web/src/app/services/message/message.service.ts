@@ -9,13 +9,15 @@ export class MessageService {
 
   constructor() { }
 
-  add(message: string, type: number) {
+  add(message: string, type: number, clear: boolean = true) {
     this.message = message;
     this.type = type;
 
-    setTimeout(() => {
-      this.clear();
-    }, 4000);
+    if (clear) {
+      setTimeout(() => {
+        this.clear();
+      }, 4000);
+    }
   }
 
   clear() {

@@ -50,7 +50,6 @@ export class AlunoComponent {
   protected readonly faFilter = faFilter;
   protected readonly filtrosPreenchidos = filtrosPreenchidos;
 
-
   alunoForm !: FormGroup;
   clientes!: DadosCombo[]
   turmas!: DadosCombo[]
