@@ -19,6 +19,7 @@ import {EditarLivroComponent} from "./pages/livro/editar/editar-livro.component"
 import {CadastrarClienteComponent} from "./pages/cliente/cadastrar/cadastrar-cliente.component";
 import {EditarClienteComponent} from "./pages/cliente/editar/editar-cliente.component";
 import {CadastrarAlunoComponent} from "./pages/aluno/cadastrar/cadastrar-aluno.component";
+import {EditarAlunoComponent} from "./pages/aluno/editar/editar-aluno.component";
 
 export const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -29,6 +30,8 @@ export const routes: Routes = [
   { path: "cliente/editar/", redirectTo: "/cliente" },
   { path: "aluno", component: AlunoComponent },
   { path: "aluno/cadastrar", component: CadastrarAlunoComponent },
+  { path: "aluno/editar/:id", component: EditarAlunoComponent },
+  { path: "aluno/editar", redirectTo: "/aluno" },
   { path: "pedido", component: PedidoComponent },
   { path: "pendencia", component: PendenciaComponent },
   { path: "kit-livro", component: KitLivroComponent },

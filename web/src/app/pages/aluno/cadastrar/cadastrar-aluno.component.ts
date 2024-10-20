@@ -103,7 +103,6 @@ export class CadastrarAlunoComponent {
       const rg = group.get('rg')?.value;
       const cpf = group.get('cpf')?.value;
 
-      // Verificar se todos os campos estão vazios
       if (!matricula && !rg && !cpf) {
         return { identificadoresRequeridos: true };
       }

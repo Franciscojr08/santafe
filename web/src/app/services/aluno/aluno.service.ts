@@ -5,6 +5,8 @@ import {PageDadosListagemAluno} from "../../interfaces/aluno/pageDadosListagemAl
 import {DadosFiltragemAluno} from "../../interfaces/aluno/dadosFiltragemAluno";
 import {DadosResponse} from "../../interfaces/dadosResponse";
 import {DadosCadastroAluno} from "../../interfaces/aluno/dadosCadastroAluno";
+import {DadosDetalhamentoAluno} from "../../interfaces/aluno/dadosDetalhamentoAluno";
+import {DadosAtualizacaoAluno} from "../../interfaces/aluno/dadosAtualizacaoAluno";
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +53,18 @@ export class AlunoService {
 
   cadastrar(dadosCadastro: DadosCadastroAluno): Observable<DadosResponse> {
     return this.http.post<DadosResponse>(this.API,dadosCadastro).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
+  detalhar(id: string): Observable<DadosDetalhamentoAluno> {
+    return this.http.get<DadosDetalhamentoAluno>(`${this.API}/${id}`);
+  }
+
+  atualizar(dadosAtualizacao: DadosAtualizacaoAluno): Observable<DadosResponse> {
+    return this.http.put<DadosResponse>(this.API,dadosAtualizacao).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
